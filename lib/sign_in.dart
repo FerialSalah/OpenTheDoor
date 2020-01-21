@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/sign_up.dart';
+import 'localization.dart';
+import 'ui_widget.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -6,8 +9,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final double circleRadius = 100.0;
-  final double circleBorderWidth = 8.0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +19,11 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Stack(
             children: <Widget>[
               loginCard(context),
-              Positioned(
-                  top: 110,
-                  left: 100,
-                  right: 100,
-                  child: Container(
-                      alignment: Alignment.center,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 50.0,
-                        child: Icon(
-                          Icons.lock,
-                          color: Color(0xFFC89C17),
-                        ),
-                      ),
-                    
-                  )),
+              positioned
 
             ],
-          ),
-        ));
+          ),),
+        );
   }
 }
 
@@ -57,39 +44,20 @@ Widget loginCard(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.center,
 
               children: <Widget>[
+                phoneTextFiled(context),
                 SizedBox(
                   height: 15,
                 ),
-                TextFormField(
 
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    labelText: "Phone",
-                    hasFloatingPlaceholder: true,
-                    prefixIcon:
-                        Icon(Icons.phone_android, color: Color(0xFFC89C17)),
-                  ),
-                ),
                 SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      labelText: "Password",
-                      hasFloatingPlaceholder: true,
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Color(0xFFC89C17),
-
-                      ),
-                  ),
-                ),
+               passwordTextFiled(context),
                 SizedBox(
                   height: 20,
                 ),
                 FlatButton(
-                  child: Text("SIGN IN"),
+                  child: Text(AppLocalizations.of(context).translateString('btn_login')),
                   color: Color(0xFFC89C17),
                   textColor: Colors.white,
                   padding:
@@ -103,7 +71,7 @@ Widget loginCard(BuildContext context) {
                 ),
                 MaterialButton(
                   onPressed: () {},
-                  child: Text("Forgot Password ?"),
+                  child: Text(AppLocalizations.of(context).translateString('forget_password')),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,14 +83,17 @@ Widget loginCard(BuildContext context) {
                     SizedBox(
                       height: 40,
                     ),
-                    Text(
-                      "Don't have an account ?",
+                    Text(AppLocalizations.of(context).translateString("don't_have_account")
+                       ,
                       style: TextStyle(color: Colors.black),
                     ),
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen ()));
+
+                      },
                       textColor: Color(0xFFC89C17),
-                      child: Text("Sign Up"),
+                      child: Text( AppLocalizations.of(context).translateString('btn_register')),
                     )
                   ],
                 )
@@ -134,3 +105,7 @@ Widget loginCard(BuildContext context) {
     ],
   );
 }
+
+
+
+

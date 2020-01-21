@@ -1,0 +1,12 @@
+{
+  "title_home": "الصفحه الرئيسية",
+  "title_select_language": "أختر اللغة",
+  "phone":"رقم الجوال",
+  "password_txt":"كلمة المرور",
+
+  "btn_login":"تسجيل الدخول",
+  "btn_register":"تسجيل جديد",
+  "forget_password":"نسيت كلمة المرور؟",
+  "don't_have_account":"لا يوجد لديك حساب ؟",
+  "login_page":"صفحه تسجيل الدخول"
+}
