@@ -1,5 +1,6 @@
 {
   "title_home": "الصفحه الرئيسية",
+  "title_home": " فتح الباب",
   "title_select_language": "أختر اللغة",
   "phone":"رقم الجوال",
   "password_txt":"كلمة المرور",
@@ -8,5 +9,13 @@
   "btn_register":"تسجيل جديد",
   "forget_password":"نسيت كلمة المرور؟",
   "don't_have_account":"لا يوجد لديك حساب ؟",
-  "login_page":"صفحه تسجيل الدخول"
+  "login_page":"صفحه تسجيل الدخول",
+  "continue":"أستمرار",
+  "have_account":"لدي حساب",
+  "code": "كود",
+  "activation_code":"كود التفعيل",
+  "password":"  كلمة المرور",
+  "confirm _password":" تأكيد كلمة المرور",
+   "name":"الاسم",
+  "email":"البريد الالكتروني"
 }
