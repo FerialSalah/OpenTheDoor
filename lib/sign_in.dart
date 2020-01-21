@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/sign_up.dart';
+import 'drawer.dart';
 import 'localization.dart';
 import 'ui_widget.dart';
 
@@ -64,7 +65,10 @@ Widget loginCard(BuildContext context) {
                       EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {},
+                  onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+
+                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -84,7 +88,7 @@ Widget loginCard(BuildContext context) {
                       height: 40,
                     ),
                     Text(AppLocalizations.of(context).translateString("don't_have_account")
-                       ,
+                      ,
                       style: TextStyle(color: Colors.black),
                     ),
                     FlatButton(

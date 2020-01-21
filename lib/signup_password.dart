@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/signup_continue.dart';
 import 'package:flutter_openthedoor/ui_widget.dart';
+
+import 'localization.dart';
 class PasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(AppLocalizations.of(context).translateString('btn_register')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -55,7 +57,7 @@ Widget passwordFiled(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: AppLocalizations.of(context).translateString("password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -72,7 +74,7 @@ Widget passwordFiled(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: 'Confirm Password',
+                labelText: AppLocalizations.of(context).translateString("confirm _password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -86,7 +88,7 @@ Widget passwordFiled(BuildContext context){
           ),
 
           FlatButton(
-            child: Text("Continue"),
+            child: Text(AppLocalizations.of(context).translateString("continue")),
             color: Color(0xFFC89C17),
             textColor: Colors.white,
             padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),

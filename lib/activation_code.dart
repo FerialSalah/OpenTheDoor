@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/signup_password.dart';
 import 'package:flutter_openthedoor/ui_widget.dart';
 
+import 'localization.dart';
+
 class ActivationCodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text('Activation Code'),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -53,8 +54,10 @@ Widget activationCode(BuildContext context) {
           SizedBox(
             height: 15,
           ),
+          SizedBox(
+            height: 15,
+          ),
       FlatButton(
-        child: Text("Continue"),
         color: Color(0xFFC89C17),
         textColor: Colors.white,
         padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
@@ -80,7 +83,7 @@ Widget codeText(BuildContext context){
       keyboardType: TextInputType. number,
       cursorColor: Color(0xFFC89C17),
       decoration: InputDecoration(
-          labelText: 'Code',
+          labelText: AppLocalizations.of(context).translateString('code'),
           labelStyle: TextStyle(
             color: Color(0xFFC89C17),
           ),

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/ui_widget.dart';
 
+import 'drawer.dart';
+import 'localization.dart';
+
 class SignUpFinalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(AppLocalizations.of(context).translateString('btn_register')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -56,7 +59,7 @@ Widget passwordFiled(BuildContext context) {
             keyboardType: TextInputType.text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: 'Name',
+                labelText: AppLocalizations.of(context).translateString('name'),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -72,7 +75,7 @@ Widget passwordFiled(BuildContext context) {
             keyboardType: TextInputType.text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: AppLocalizations.of(context).translateString('email'),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -84,13 +87,14 @@ Widget passwordFiled(BuildContext context) {
             height: 15,
           ),
           FlatButton(
-            child: Text("Sign Up"),
+            child: Text(AppLocalizations.of(context).translateString('btn_register')),
             color: Color(0xFFC89C17),
             textColor: Colors.white,
             padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));            },
           ),
           SizedBox(
             height: 15,

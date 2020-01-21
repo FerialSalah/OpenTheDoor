@@ -56,7 +56,7 @@ Widget passwordTextFiled(BuildContext context) {
 }
 Widget continueButton(BuildContext context){
   return FlatButton(
-    child: Text("Continue"),
+    child: Text(AppLocalizations.of(context).translateString('continue')),
     color: Color(0xFFC89C17),
     textColor: Colors.white,
     padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
@@ -98,8 +98,8 @@ Widget cardSignUp(BuildContext context) {
               SizedBox(
                 height: 40,
               ),
-              Text(
-                "have an account ",
+              Text(AppLocalizations.of(context).translateString("don't_have_account")
+                ,
                 style: TextStyle(color: Colors.black),
               ),
               FlatButton(
@@ -109,7 +109,7 @@ Widget cardSignUp(BuildContext context) {
 
                 },
                 textColor: Color(0xFFC89C17),
-                child: Text("Sign In"),
+                child: Text(AppLocalizations.of(context).translateString('btn_login')),
               ),
             ],
           )
