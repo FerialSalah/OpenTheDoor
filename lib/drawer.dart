@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/profile.dart';
 
 import 'localization.dart';
 
@@ -6,36 +7,52 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context).translateString('title_home')),
+        backgroundColor: Color(0xFFC89C17),
+        centerTitle: true,
+      ),
+      body: Center(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             Stack(
+              alignment: Alignment.center,
               children: <Widget>[
                 DrawerHeader(
                   decoration: BoxDecoration(
                     color: Color(0xFFC89C17),
                   ),
-                ),
-                Positioned.fill(
-                  top: 100.0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 200.0,
-                    width: 200.0,
-                    decoration: BoxDecoration(
-//                    image: new DecorationImage(
-//                      image: new AssetImage("assets/images/Notification.jpg"),
-//                    ) ,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.blue,
-                        width: 5.0,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 300,
+                        height: 200,
+                        child: Center(
+                          child: Text('Background image goes here'),
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        top: 10.0,
+                        bottom: 60.0,// (background container size) - (circle height / 2)
+                        child: Container(
+                          height: 300.0,
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green
+                          ),
+                        ),
+                      )
+
+                    ],
                   ),
-                )
+                ),
               ],
+            ),
+            SizedBox(
+              height: 50,
             ),
             ListTile(
               title: Text('profile'),
@@ -50,12 +67,14 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
               },
             ),
             ListTile(
               title: Text('History'),
               leading: Icon(
                 Icons.history,
+                color: Color(0xFFC89C17),
                 size: 24.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
@@ -70,6 +89,7 @@ class MyHomePage extends StatelessWidget {
               title: Text('Balance'),
               leading: Icon(
                 Icons.account_balance_wallet,
+                color: Color(0xFFC89C17),
                 size: 24.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
@@ -84,6 +104,7 @@ class MyHomePage extends StatelessWidget {
               title: Text('Notifications'),
               leading: Icon(
                 Icons.notifications,
+                color: Color(0xFFC89C17),
                 size: 24.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               ),

@@ -10,6 +10,7 @@ class ActivationCodePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
+        title: Text("Activation Code"),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -58,6 +59,7 @@ Widget activationCode(BuildContext context) {
             height: 15,
           ),
       FlatButton(
+        child: Text(AppLocalizations.of(context).translateString('continue')),
         color: Color(0xFFC89C17),
         textColor: Colors.white,
         padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),

@@ -77,44 +77,48 @@ Widget cardSignUp(BuildContext context) {
     elevation: 8,
     child: Padding(
       padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          phoneTextFiled(context),
-          SizedBox(
-            height: 15,
-          ),
-          continueButton(context),
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Text(AppLocalizations.of(context).translateString("don't_have_account")
-                ,
-                style: TextStyle(color: Colors.black),
-              ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()));
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-                },
-                textColor: Color(0xFFC89C17),
-                child: Text(AppLocalizations.of(context).translateString('btn_login')),
-              ),
-            ],
-          )
-        ],
+          children: <Widget>[
+            phoneTextFiled(context),
+            SizedBox(
+              height: 15,
+            ),
+            continueButton(context),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Container(),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Text(AppLocalizations.of(context).translateString("don't_have_account")
+                  ,
+                  style: TextStyle(color: Colors.black),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignInScreen()));
+
+                  },
+                  textColor: Color(0xFFC89C17),
+                  child: Text(AppLocalizations.of(context).translateString('btn_login')),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     ),
   );
 }
+

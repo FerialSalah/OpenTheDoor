@@ -1,5 +1,4 @@
 {
-  "title_home": "Home",
   "title_home": "Open The Door",
   "title_select_language": "Choose The Language",
   "phone":" Phone",
@@ -8,7 +7,23 @@
   "btn_register":"Sign Up",
   "login_page":"Login Page",
    "forget_password":"Forgot Password ?",
-  "don't_have_account":"Don't have an account ?"
+  "don't_have_account":"Don't have an account ?",
+  "continue":"Continue",
+  "have_account":"have an account ?",
+  "code":"Code",
+ "activation_code":"Activation Code",
+  "password":"Password",
+  "confirm _password":"Confirm Password",
+  "name":"Name",
+  "email":"Email",
+  "edit_profile":"Edit Profile",
+  "change_password":"Change Password",
+  "profile":"Profile"
+
+
+
+
+
 
 
 }

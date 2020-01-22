@@ -83,6 +83,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
           title: Text(AppLocalizations.of(context).translateString('title_select_language')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
+
         ),
         body: Center(
           child: Column(

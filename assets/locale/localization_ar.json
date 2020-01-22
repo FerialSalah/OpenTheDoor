@@ -1,5 +1,4 @@
 {
-  "title_home": "الصفحه الرئيسية",
   "title_home": " فتح الباب",
   "title_select_language": "أختر اللغة",
   "phone":"رقم الجوال",
@@ -17,5 +16,9 @@
   "password":"  كلمة المرور",
   "confirm _password":" تأكيد كلمة المرور",
    "name":"الاسم",
-  "email":"البريد الالكتروني"
+  "email":"البريد الالكتروني",
+  "edit_profile":"تعديل الملف الشخصي",
+  "change_password":"تغير كلمة المرور",
+  "profile":"الملف الشخصي"
+
 }
