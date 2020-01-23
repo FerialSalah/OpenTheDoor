@@ -26,5 +26,10 @@
   "payment":"الدفع",
   "payment_txt":"0.0 ريال",
   "balance":"رصيدي",
-  "request_money":"شحن المحفظة"
+  "request_money":"شحن المحفظة",
+  "history":"السجلات",
+  "current":"الحالية",
+  "in_process":"قيد المعالجة",
+  "canceled":"الملغي",
+  "completed":"مكتمل"
 }

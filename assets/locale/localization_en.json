@@ -25,7 +25,12 @@
   "payment":"Payment",
   "payment_txt":"0.0 SAR",
   "balance":"My Balance",
-  "request_money":"Request Withdraw Money"
+  "request_money":"Request Withdraw Money",
+  "history":"History",
+  "current":"Current",
+  "in_process":"INProcess",
+  "canceled":"Canceled",
+  "completed":"Completed"
 
 
 
