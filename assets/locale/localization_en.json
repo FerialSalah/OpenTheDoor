@@ -18,7 +18,16 @@
   "email":"Email",
   "edit_profile":"Edit Profile",
   "change_password":"Change Password",
-  "profile":"Profile"
+  "profile":"Profile",
+  "save":"Save",
+  "old_password":"Old Password",
+  "new _password":"New Password",
+  "payment":"Payment",
+  "payment_txt":"0.0 SAR",
+  "balance":"My Balance",
+  "request_money":"Request Withdraw Money"
+
+
 
 
 

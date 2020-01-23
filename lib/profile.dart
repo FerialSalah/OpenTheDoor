@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/sign_in.dart';
 
+import 'change_password.dart';
+import 'edit_profile.dart';
 import 'localization.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,87 +18,103 @@ class ProfileScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false)),
       ),
-      body: Form(
-        child: SingleChildScrollView(
+      body:SingleChildScrollView(
           // Optional
-          child: Stack(
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 4),
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: profileCard(context),
-                  )
-                ],
-              ),
-              profileImage(context)
-            ],
+          child: Form(
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 4),
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child: cardProfile(context),
+                    )
+                  ],
+                ),
+                profileImage(context)
+              ],
+            ),
           ),
-        ),
+
       ),
     );
   }
 }
+Widget cardProfile(BuildContext context) {
 
+  return Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    elevation: 8,
+    child: Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-Widget profileCard(BuildContext context) {
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Text('Name',),
+            SizedBox(
+              height: 20,
+            ),
+            Text('Phone',),
+            SizedBox(
+              height: 20,
+            ),
+            Text('Email',),
+            SizedBox(
+              height: 20,
+            ),
+            editProfileButton(context),
+            SizedBox(
+              height: 20,
+            ),
+            changePasswordButton(context)
 
-     return Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          ],
         ),
-        elevation: 8,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Name',
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text('Phone'),
-              SizedBox(
-                height: 15,
-              ),
-              Text('Email'),
-              SizedBox(
-                height: 15.0,
-              ),
-              FlatButton(
-                child: Text(AppLocalizations.of(context)
-                    .translateString('edit_profile')),
-                color: Color(0xFFC89C17),
-                textColor: Colors.white,
-                padding:
-                    EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                onPressed: () {},
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              FlatButton(
-                child: Text(AppLocalizations.of(context)
-                    .translateString('change_password')),
-                color: Color(0xFFC89C17),
-                textColor: Colors.white,
-                padding:
-                    EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      );
+      ),
+    ),
+  );
+
+  }
+
+Widget editProfileButton(BuildContext context) {
+  return MaterialButton(
+    minWidth: 250.0,
+    height: 20.0,
+    child: Text(AppLocalizations.of(context).translateString('edit_profile')),
+    color: Color(0xFFC89C17),
+    textColor: Colors.white,
+    padding: EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+    onPressed: () {
+
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfileScreen()));
+
+
+    },);
+}
+
+  Widget changePasswordButton(BuildContext context) {
+    return MaterialButton(
+      minWidth: 250.0,
+      height: 20.0,
+      child: Text(AppLocalizations.of(context).translateString('change_password')),
+      color: Color(0xFFC89C17),
+      textColor: Colors.white,
+      padding: EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChangePasswordScreen()));
+
+      },);
 }
 
 Widget profileImage(BuildContext context) {
@@ -113,6 +130,7 @@ Widget profileImage(BuildContext context) {
           child: Icon(
             Icons.account_circle,
             color: Color(0xFFC89C17),
+            size: 80.0,
           ),
         ),
       ));

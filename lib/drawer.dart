@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/payment_page.dart';
 import 'package:flutter_openthedoor/profile.dart';
 
 import 'localization.dart';
@@ -98,6 +99,7 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen()));
               },
             ),
             ListTile(
