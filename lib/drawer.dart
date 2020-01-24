@@ -4,6 +4,7 @@ import 'package:flutter_openthedoor/profile.dart';
 
 import 'history_page.dart';
 import 'localization.dart';
+import 'notification_page.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
@@ -118,6 +119,7 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>NotificationScreen()));
               },
             ),
             ListTile(

@@ -30,7 +30,10 @@
   "current":"Current",
   "in_process":"INProcess",
   "canceled":"Canceled",
-  "completed":"Completed"
+  "completed":"Completed",
+  "notifications":"Notifications",
+  "notification_data":"Notifications Data",
+  "language":"Language"
 
 
 

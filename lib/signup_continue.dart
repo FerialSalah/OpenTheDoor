@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/test.dart';
 import 'package:flutter_openthedoor/ui_widget.dart';
 
 import 'drawer.dart';
@@ -95,7 +94,7 @@ Widget passwordFiled(BuildContext context) {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>TestPage()));            },
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));            },
           ),
           SizedBox(
             height: 15,

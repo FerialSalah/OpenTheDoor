@@ -31,5 +31,11 @@
   "current":"الحالية",
   "in_process":"قيد المعالجة",
   "canceled":"الملغي",
-  "completed":"مكتمل"
+  "completed":"مكتمل",
+  "notifications":"الاشعارات",
+  "notification_data":" بيانات الاشعارات",
+  "language":"اللغة"
+
+
+
 }
