@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'activation_code.dart';
-import 'drawer.dart';
-import 'localization.dart';
-import 'sign_in.dart';
+import 'package:flutter_openthedoor/screens/activation_code.dart';
+import 'package:flutter_openthedoor/screens/sign_in.dart';
+
+import '../localization.dart';
+
 
 Widget phoneTextFiled(BuildContext context) {
   return Row(
@@ -15,6 +16,8 @@ Widget phoneTextFiled(BuildContext context) {
       ),
       new Flexible(
         child: TextFormField(
+         // validator: ,
+         
           keyboardType: TextInputType.phone,
           cursorColor: Color(0xFFC89C17),
           decoration: InputDecoration(

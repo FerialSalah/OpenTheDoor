@@ -1,47 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/signup_continue.dart';
-import 'package:flutter_openthedoor/ui_widget.dart';
+import 'package:flutter_openthedoor/screens/profile.dart';
 
-import 'localization.dart';
-class PasswordPage extends StatelessWidget {
+import '../localization.dart';
+
+class EditProfileScreen extends StatefulWidget {
+  @override
+  _EditProfileScreenState createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translateString('btn_register')),
+        title: Text(
+            AppLocalizations.of(context).translateString('edit_profile')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false)),
       ),
-      body: Form(
-        child: SingleChildScrollView(
-          // Optional
+      body: SingleChildScrollView(
+        child: Form(
           child: Stack(
             children: <Widget>[
               Column(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 4),
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: passwordFiled(context),
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 4),
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child:editProfileCard(context)
                   )
                 ],
               ),
-              positioned
+              profileImage(context)
             ],
           ),
         ),
-      ),);
-
+      ),
+    );
   }
 }
 
 
-Widget passwordFiled(BuildContext context){
+Widget editProfileCard(BuildContext context){
   return  Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
@@ -53,16 +58,15 @@ Widget passwordFiled(BuildContext context){
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           TextFormField(
-            obscureText: true,
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("password"),
+                labelText: AppLocalizations.of(context).translateString("name"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
                 hasFloatingPlaceholder: true,
-                prefixIcon: Icon(Icons.lock, color: Color(0xFFC89C17)),
+                prefixIcon: Icon(Icons.account_circle, color: Color(0xFFC89C17)),
                 counterStyle: TextStyle(color: Color(0xFFC89C17))),
 
           ),
@@ -70,16 +74,33 @@ Widget passwordFiled(BuildContext context){
             height: 15,
           ),
           TextFormField(
-            obscureText: true,
-            keyboardType: TextInputType. text,
+
+            keyboardType: TextInputType.emailAddress,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("confirm _password"),
+                labelText: AppLocalizations.of(context).translateString("email"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
                 hasFloatingPlaceholder: true,
-                prefixIcon: Icon(Icons.lock, color: Color(0xFFC89C17)),
+                prefixIcon: Icon(Icons.email, color: Color(0xFFC89C17)),
+                counterStyle: TextStyle(color: Color(0xFFC89C17))),
+
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          TextFormField(
+
+            keyboardType: TextInputType. phone,
+            cursorColor: Color(0xFFC89C17),
+            decoration: InputDecoration(
+                labelText: AppLocalizations.of(context).translateString("phone"),
+                labelStyle: TextStyle(
+                  color: Color(0xFFC89C17),
+                ),
+                hasFloatingPlaceholder: true,
+                prefixIcon: Icon(Icons.phone_android, color: Color(0xFFC89C17)),
                 counterStyle: TextStyle(color: Color(0xFFC89C17))),
 
           ),
@@ -87,25 +108,26 @@ Widget passwordFiled(BuildContext context){
             height: 15,
           ),
 
-          FlatButton(
-            child: Text(AppLocalizations.of(context).translateString("continue")),
+          MaterialButton(
+            minWidth: 250.0,
+            height: 10.0,
+            child: Text(AppLocalizations.of(context).translateString("save")),
             color: Color(0xFFC89C17),
             textColor: Colors.white,
-            padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
+            padding: EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             onPressed: () {
 
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpFinalPage()));
+
             },
           ),
-          SizedBox(
-            height: 15,
-          ),
+
 
         ],
       ),
     ),
   );
+
 
 
 

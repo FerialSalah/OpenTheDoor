@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/screens/sign_up.dart';
+import 'package:flutter_openthedoor/widgets/ui_widget.dart';
+
+import '../localization.dart';
+import 'drawer.dart';
+
+
+class SignInScreen extends StatefulWidget {
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  bool autovalidate = false;
+
+  void vaildateInputs(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MyHomePage()));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFC89C17),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 4),
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 8,
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            autovalidate: autovalidate,
+
+                            // validator: ,
+                            keyboardType: TextInputType.phone,
+                            cursorColor: Color(0xFFC89C17),
+                            decoration: InputDecoration(
+                                labelText: AppLocalizations.of(context)
+                                    .translateString('phone'),
+                                labelStyle: TextStyle(
+                                  color: Color(0xFFC89C17),
+                                ),
+                                hasFloatingPlaceholder: true,
+                                prefixIcon: Icon(Icons.phone_android,
+                                    color: Color(0xFFC89C17)),
+                                counterStyle:
+                                    TextStyle(color: Color(0xFFC89C17))),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            autovalidate: autovalidate,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)
+                                  .translateString('password_txt'),
+                              hasFloatingPlaceholder: true,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Color(0xFFC89C17),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          FlatButton(
+                            child: Text(AppLocalizations.of(context)
+                                .translateString('btn_login')),
+                            color: Color(0xFFC89C17),
+                            textColor: Colors.white,
+                            padding: EdgeInsets.only(
+                                left: 38, right: 38, top: 15, bottom: 15),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            onPressed: () {
+                              vaildateInputs(context);
+                            },
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          MaterialButton(
+                            onPressed: () {},
+                            child: Text(AppLocalizations.of(context)
+                                .translateString('forget_password')),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(),
+                              ),
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)
+                                    .translateString("don't_have_account"),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignUpScreen()));
+                                },
+                                textColor: Color(0xFFC89C17),
+                                child: Text(AppLocalizations.of(context)
+                                    .translateString('btn_register')),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            positioned
+          ],
+        ),
+      ),
+    );
+  }
+}

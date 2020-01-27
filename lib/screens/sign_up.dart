@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/sign_in.dart';
-import 'package:flutter_openthedoor/ui_widget.dart';
+import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 
-import 'localization.dart';
+import '../localization.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   @override

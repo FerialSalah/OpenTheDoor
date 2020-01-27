@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'localization.dart';
+import '../localization.dart';
+
+
 
 class PaymentScreen extends StatefulWidget {
   @override

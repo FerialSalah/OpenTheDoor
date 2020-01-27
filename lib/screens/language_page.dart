@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'localization.dart';
+import '../localization.dart';
+
 class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

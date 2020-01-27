@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/payment_page.dart';
-import 'package:flutter_openthedoor/profile.dart';
+import 'package:flutter_openthedoor/screens/payment_page.dart';
+import 'package:flutter_openthedoor/screens/profile.dart';
 
+import '../localization.dart';
 import 'history_page.dart';
-import 'localization.dart';
+
 import 'notification_page.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -38,17 +39,15 @@ class MyHomePage extends StatelessWidget {
                       ),
                       Positioned(
                         top: 10.0,
-                        bottom: 60.0,// (background container size) - (circle height / 2)
+                        bottom:
+                            60.0, // (background container size) - (circle height / 2)
                         child: Container(
                           height: 300.0,
                           width: 100.0,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.green
-                          ),
+                              shape: BoxShape.circle, color: Colors.green),
                         ),
                       )
-
                     ],
                   ),
                 ),
@@ -70,7 +69,8 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
               },
             ),
             ListTile(
@@ -86,8 +86,8 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>HistoryScreen()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HistoryScreen()));
               },
             ),
             ListTile(
@@ -103,7 +103,8 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PaymentScreen()));
               },
             ),
             ListTile(
@@ -119,7 +120,10 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>NotificationScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (contxt) => NotificationScreen()));
               },
             ),
             ListTile(
