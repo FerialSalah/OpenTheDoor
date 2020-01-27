@@ -14,6 +14,8 @@ dependencies:
   flutter_spinkit: ^3.1.0
   dio: ^3.0.8
 
+  google_maps_flutter: ^0.5.21+15
+  geolocator:
   flutter_localizations:
     sdk: flutter
 
