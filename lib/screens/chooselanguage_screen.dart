@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'application.dart';
-import 'localization.dart';
+
+import '../application.dart';
+import '../localization.dart';
 import 'sign_in.dart';
 
 class ChooseLanguage extends StatelessWidget {

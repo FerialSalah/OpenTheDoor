@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/profile.dart';
+import 'package:flutter_openthedoor/screens/signup_continue.dart';
+import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 
-import 'localization.dart';
+import '../localization.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  @override
-  _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
-}
-
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+class PasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text(
-            AppLocalizations.of(context).translateString('change_password')),
+        title: Text(AppLocalizations.of(context).translateString('btn_register')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false)),
       ),
-      body: SingleChildScrollView(
-        child: Form(
+      body: Form(
+        child: SingleChildScrollView(
+          // Optional
           child: Stack(
             children: <Widget>[
               Column(
@@ -32,20 +28,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height / 4),
                     padding: EdgeInsets.only(left: 10, right: 10),
-                    child:changePasswordCard(context)
+                    child: passwordFiled(context),
                   )
                 ],
               ),
-              profileImage(context)
+              positioned
             ],
           ),
         ),
-      ),
-    );
+      ),);
+
   }
 }
 
-Widget changePasswordCard(BuildContext context){
+
+Widget passwordFiled(BuildContext context){
   return  Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
@@ -61,24 +58,7 @@ Widget changePasswordCard(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("old_password"),
-                labelStyle: TextStyle(
-                  color: Color(0xFFC89C17),
-                ),
-                hasFloatingPlaceholder: true,
-                prefixIcon: Icon(Icons.lock, color: Color(0xFFC89C17)),
-                counterStyle: TextStyle(color: Color(0xFFC89C17))),
-
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          TextFormField(
-            obscureText: true,
-            keyboardType: TextInputType. text,
-            cursorColor: Color(0xFFC89C17),
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("new _password"),
+                labelText: AppLocalizations.of(context).translateString("password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -108,20 +88,20 @@ Widget changePasswordCard(BuildContext context){
             height: 15,
           ),
 
-          MaterialButton(
-            minWidth: 250.0,
-            height: 20.0,
-            child: Text(AppLocalizations.of(context).translateString("save")),
+          FlatButton(
+            child: Text(AppLocalizations.of(context).translateString("continue")),
             color: Color(0xFFC89C17),
             textColor: Colors.white,
             padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             onPressed: () {
 
-
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpFinalPage()));
             },
           ),
-
+          SizedBox(
+            height: 15,
+          ),
 
         ],
       ),

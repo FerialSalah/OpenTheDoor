@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../localization.dart';
 import 'change_password.dart';
 import 'edit_profile.dart';
-import 'localization.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'chooselanguage_screen.dart';
-import 'splah.dart';
+import 'package:flutter_openthedoor/screens/chooselanguage_screen.dart';
+import 'package:flutter_openthedoor/screens/splah.dart';
 
 void main() => runApp(
     MaterialApp(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/signup_password.dart';
-import 'package:flutter_openthedoor/ui_widget.dart';
+import 'package:flutter_openthedoor/screens/signup_password.dart';
+import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 
-import 'localization.dart';
+import '../localization.dart';
+
 
 class ActivationCodePage extends StatelessWidget {
   @override
