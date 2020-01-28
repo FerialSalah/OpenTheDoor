@@ -65,7 +65,6 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     this._fetchLocale().then((locale) {
       setState(() {

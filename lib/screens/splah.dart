@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'chooselanguage_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 class SplashPage extends StatefulWidget {
   @override
@@ -21,7 +20,6 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTime();
   }

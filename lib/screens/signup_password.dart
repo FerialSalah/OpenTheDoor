@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/signup_continue.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
-
 import '../localization.dart';
 
 class PasswordPage extends StatelessWidget {
