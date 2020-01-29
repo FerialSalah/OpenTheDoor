@@ -3,6 +3,7 @@ import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
 
 import '../localization.dart';
+import 'contact_us_page.dart';
 import 'history_page.dart';
 
 import 'notification_page.dart';
@@ -154,6 +155,7 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>ContactUsScreen()));
               },
             ),
             ListTile(
