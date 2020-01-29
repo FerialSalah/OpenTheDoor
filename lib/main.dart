@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'screens/chooselanguage_screen.dart';
 import 'screens/splah.dart';
 
