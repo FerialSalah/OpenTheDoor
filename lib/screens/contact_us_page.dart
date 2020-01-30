@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../localization.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:async/async.dart';
 
 class ContactUsScreen extends StatefulWidget {
   @override
