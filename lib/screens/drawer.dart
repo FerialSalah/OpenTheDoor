@@ -24,25 +24,46 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-
-
-                UserAccountsDrawerHeader(
-
-                  accountName: Text('Name',textAlign: TextAlign.center),
-                   decoration: BoxDecoration(color: Color(0xFFC89C17),),
-                  currentAccountPicture: CircleAvatar(radius: 50.0,backgroundColor: Colors.white,),
-
+            Container(
+              child: DrawerHeader(
+                  child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Name',
+                      textAlign: TextAlign.center,
+                      style:TextStyle(color: Colors.white,fontSize: 20.0),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 50.0,
+                      child: Icon(
+                        Icons.account_circle,
+                        size: 80.0,
+                        color: Color(0xFFC89C17),
+                      ),
+                    )
+                  ],
                 ),
+              )),
+              color: Color(0xFFC89C17),
+            ),
+//                UserAccountsDrawerHeader(
+//
+//                  accountName: Text('Name',textAlign: TextAlign.center),
+//                   decoration: BoxDecoration(color: Color(0xFFC89C17),),
+//                  currentAccountPicture: CircleAvatar(radius: 50.0,backgroundColor: Colors.white,),
+//
+//                ),
 //                DrawerHeader(
 //                  decoration: BoxDecoration(
 //                    color: Color(0xFFC89C17),
 //                  ),
 //
-     
 
-            SizedBox(
-              height: 10,
-            ),
             ListTile(
               title: Text('profile'),
               leading: Icon(
@@ -141,7 +162,8 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>ContactUsScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (contxt) => ContactUsScreen()));
               },
             ),
             ListTile(
@@ -157,8 +179,8 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>AboutUsScreen()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (contxt) => AboutUsScreen()));
               },
             ),
             ListTile(
@@ -174,8 +196,10 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>InviteFriendScreen()));
-
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (contxt) => InviteFriendScreen()));
               },
             ),
             ListTile(
@@ -191,8 +215,10 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>InviteFriendScreen()));
-
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (contxt) => InviteFriendScreen()));
               },
             ),
             SizedBox(

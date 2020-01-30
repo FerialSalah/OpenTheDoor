@@ -39,7 +39,10 @@
   "address":"العنوان",
   "website":"الموقع",
   "about_company": "عن الشركة",
-  "invite_friend":"دعوة صديق"
+  "invite_friend":"دعوة صديق",
+  "invite_friend_text":"ادعو صديقك واحصل علي هدية ",
+  "your_promocode": "رمزك الترويجي",
+  "promo_code_txt": "اسم الرمز"
 
 
 

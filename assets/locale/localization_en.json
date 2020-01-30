@@ -38,7 +38,11 @@
   "address":"Address",
   "website":"Website",
   "about_company": "About Company",
-  "invite_friend": "Invite Friend"
+  "invite_friend": "Invite Friend",
+  "invite_friend_text":"Invite a friend and you both get a bonus",
+  "your_promocode": "Your Promo code",
+  "promo_code_txt": "Promo Code text"
+
 
 
 
