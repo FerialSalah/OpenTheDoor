@@ -18,7 +18,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
-      body: MapSample(),
+      body: MapViewScreen(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
