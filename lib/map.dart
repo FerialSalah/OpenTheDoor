@@ -23,9 +23,7 @@ class MapSampleState extends State<MapSample> {
   CameraPosition(target: LatLng(0, 0),);
 
   static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
   @override
@@ -33,17 +31,17 @@ class MapSampleState extends State<MapSample> {
     return new Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition: _myLocation,
+        initialCameraPosition: _kLake,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
       ),
 
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: _goToTheLake,
+      //   label: Text('To the lake!'),
+      //   icon: Icon(Icons.directions_boat),
+      // ),
     );
   }
 

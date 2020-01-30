@@ -3,6 +3,7 @@ import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
 
 import '../localization.dart';
+import '../map.dart';
 import 'contact_us_page.dart';
 import 'history_page.dart';
 
@@ -17,7 +18,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
-      body: Center(),
+      body: MapSample(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
