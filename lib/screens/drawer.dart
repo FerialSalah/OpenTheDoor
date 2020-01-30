@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
-
 import '../localization.dart';
+import 'about_us_page.dart';
 import 'contact_us_page.dart';
 import 'history_page.dart';
 
+import 'invite_friend_page.dart';
 import 'notification_page.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -22,40 +23,24 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFC89C17),
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 300,
-                        height: 200,
-                        child: Center(
-                          child: Text('Background image goes here'),
-                        ),
-                      ),
-                      Positioned(
-                        top: 10.0,
-                        bottom:
-                            60.0, // (background container size) - (circle height / 2)
-                        child: Container(
-                          height: 300.0,
-                          width: 100.0,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.green),
-                        ),
-                      )
-                    ],
-                  ),
+
+
+                UserAccountsDrawerHeader(
+
+                  accountName: Text('Name',textAlign: TextAlign.center),
+                   decoration: BoxDecoration(color: Color(0xFFC89C17),),
+                  currentAccountPicture: CircleAvatar(radius: 50.0,backgroundColor: Colors.white,),
+
                 ),
-              ],
-            ),
+//                DrawerHeader(
+//                  decoration: BoxDecoration(
+//                    color: Color(0xFFC89C17),
+//                  ),
+//
+     
+
             SizedBox(
-              height: 50,
+              height: 10,
             ),
             ListTile(
               title: Text('profile'),
@@ -161,7 +146,7 @@ class MyHomePage extends StatelessWidget {
             ListTile(
               title: Text('About Company'),
               leading: Icon(
-                Icons.question_answer,
+                Icons.help,
                 color: Color(0xFFC89C17),
                 size: 30.0,
                 semanticLabel: 'Text to announce in accessibility modes',
@@ -171,7 +156,46 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>AboutUsScreen()));
+
               },
+            ),
+            ListTile(
+              title: Text('Invite Friend'),
+              leading: Icon(
+                Icons.share,
+                color: Color(0xFFC89C17),
+                size: 30.0,
+                semanticLabel: 'Text to announce in accessibility modes',
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>InviteFriendScreen()));
+
+              },
+            ),
+            ListTile(
+              title: Text('Logout'),
+              leading: Icon(
+                Icons.exit_to_app,
+                color: Color(0xFFC89C17),
+                size: 30.0,
+                semanticLabel: 'Text to announce in accessibility modes',
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.push(context,MaterialPageRoute(builder: (contxt)=>InviteFriendScreen()));
+
+              },
+            ),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),
