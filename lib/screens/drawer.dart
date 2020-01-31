@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
+import 'package:flutter_openthedoor/screens/promo_code_page.dart';
 import '../localization.dart';
 import 'about_us_page.dart';
 import '../map.dart';
@@ -8,6 +9,7 @@ import 'contact_us_page.dart';
 import 'history_page.dart';
 
 import 'invite_friend_page.dart';
+import 'language_page.dart';
 import 'notification_page.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -116,6 +118,23 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ListTile(
+              title: Text('Promo Code'),
+              leading: Icon(
+                Icons.code,
+                color: Color(0xFFC89C17),
+                size: 24.0,
+                semanticLabel: 'Text to announce in accessibility modes',
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PromoCodeScreen()));
+              },
+            ),
+            ListTile(
               title: Text('Notifications'),
               leading: Icon(
                 Icons.notifications,
@@ -147,6 +166,10 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (contxt) => LanguageScreen()));
               },
             ),
             ListTile(
@@ -215,10 +238,7 @@ class MyHomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (contxt) => InviteFriendScreen()));
+
               },
             ),
             SizedBox(
