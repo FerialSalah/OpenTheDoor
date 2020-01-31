@@ -12,21 +12,22 @@ class MapViewScreenState extends State<MapViewScreen> {
   Completer<GoogleMapController> _controller = Completer();
   Position currentPosition;
   CameraPosition myPostion =
-      CameraPosition(target: LatLng(0, 0), zoom: 19.151926040649414);
+      CameraPosition(target:  LatLng(37.43296265331129, -122.08832357078792), zoom: 19.151926040649414);
 
-  getCurrentLocation() async {
-    currentPosition = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
-    myPostion = CameraPosition(
-        target: LatLng(currentPosition.latitude, currentPosition.longitude),
-        zoom: 19.151926040649414);
-    setState(() {});
-  }
+//  getCurrentLocation() async {
+ //   currentPosition = await Geolocator()
+ //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
+  //      print(currentPosition.latitude);
+   // myPostion = CameraPosition(
+   //     target: LatLng(currentPosition.latitude, currentPosition.longitude),
+  //      zoom: 19.151926040649414);
+   // setState(() {});
+  //}
 
   @override
   void initState() {
     super.initState();
-    getCurrentLocation();
+   // getCurrentLocation();
   }
 
   @override
