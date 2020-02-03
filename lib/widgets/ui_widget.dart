@@ -77,7 +77,9 @@ Widget continueButton(BuildContext context) {
 }
 
 Widget cardSignUp(BuildContext context) {
-  return Card(
+  return 
+  
+  Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),
