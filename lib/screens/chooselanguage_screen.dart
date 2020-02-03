@@ -59,7 +59,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
   _fetchLocale() async {
     var prefs = await SharedPreferences.getInstance();
 
-    return Locale(
+    return  Locale(
         prefs.getString('language_code'), prefs.getString('country_code'));
   }
 
