@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoder/geocoder.dart';
 
 class MapViewScreen extends StatefulWidget {
   @override
@@ -11,23 +12,37 @@ class MapViewScreen extends StatefulWidget {
 class MapViewScreenState extends State<MapViewScreen> {
   Completer<GoogleMapController> _controller = Completer();
   Position currentPosition;
-  CameraPosition myPostion =
-      CameraPosition(target:  LatLng(37.43296265331129, -122.08832357078792), zoom: 19.151926040649414);
+  var addresses;
+  String address = "";
+  CameraPosition myPostion = CameraPosition(
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      zoom: 19.151926040649414);
 
- getCurrentLocation() async {
-   currentPosition = await Geolocator()
-       .getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
-       print(currentPosition.latitude);
-   myPostion = CameraPosition(
-       target: LatLng(currentPosition.latitude, currentPosition.longitude),
-       zoom: 19.151926040649414);
-   setState(() {});
+  bool isLoading;
+
+  getCurrentLocation() async {
+    currentPosition = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
+    print(currentPosition.latitude);
+    myPostion = CameraPosition(
+        target: LatLng(currentPosition.latitude, currentPosition.longitude),
+        zoom: 19.151926040649414);
+    await search(currentPosition.latitude, currentPosition.longitude);
+    setState(() {});
+  }
+
+  Future search(double longitude, double latitude) async {
+    var first = addresses.first;
+    final coordinates = new Coordinates(longitude, latitude);
+    addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    first = addresses.first;
+    address = "${first.featureName} : ${first.addressLine}";
   }
 
   @override
   void initState() {
     super.initState();
-   getCurrentLocation();
+    getCurrentLocation();
   }
 
   @override

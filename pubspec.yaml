@@ -13,13 +13,15 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_spinkit: ^3.1.0
   dio: ^3.0.8
+  shared_preferences: ^0.5.3+4
   image_picker: ^0.6.3+1
   google_maps_flutter: ^0.5.21+15
   geolocator:
+  geocoder: ^0.2.1
   flutter_localizations:
     sdk: flutter
 
-  shared_preferences: ^0.5.3+4
+  
 
   url_launcher: ^5.4.1
 
