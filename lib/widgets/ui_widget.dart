@@ -47,7 +47,8 @@ Positioned positioned = Positioned(
           color: Color(0xFFC89C17),
         ),
       ),
-    ));
+    )
+    );
 Widget passwordTextFiled(BuildContext context) {
   return TextFormField(
     obscureText: true,
