@@ -54,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
           Stack(children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height*0.7,
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.1),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
