@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/sign_up.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
-
+import 'forget_password.dart';
 import '../localization.dart';
 import 'drawer.dart';
 
@@ -129,7 +129,13 @@ class _SignInScreenState extends State<SignInScreen> {
                               height: 10,
                             ),
                             MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ForgetPassword()));
+                              },
                               child: Text(AppLocalizations.of(context)
                                   .translateString('forget_password')),
                             ),
