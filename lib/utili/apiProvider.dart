@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_openthedoor/models/aboutApp.dart';
+import 'package:flutter_openthedoor/models/appContact.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
@@ -10,6 +12,7 @@ class ApiProvider {
   static String userinfo = "userinfo";
   static String updateprofile = "updateprofile";
   static String changepassword = "changepassword";
+  static String appInfo = "appinfo";
 
   //////////////////////////////
   //   User related requests  //
@@ -110,4 +113,29 @@ class ApiProvider {
 
     return 200;
   }
+
+  //////////////////////////////
+  //     app info requests    //
+  //////////////////////////////
+
+  Future<AppContactModel> getAppContact() async {
+    AppContactModel contact;
+    Response response = await Dio().post("$baseUrl$appInfo");
+    var data = response.data['appinfo'];
+    contact = AppContactModel.fromApi(data);
+    return contact;
+  }
+
+  ////////////////////////////
+
+  Future<AboutUsModel> getAppAbout() async {
+    AboutUsModel about;
+    Response response = await Dio().post("$baseUrl$appInfo");
+    var data = response.data['aboutus'];
+    about = AboutUsModel.fromApi(data);
+    return about;
+  }
+
+  ////////////////////////////
+
 }

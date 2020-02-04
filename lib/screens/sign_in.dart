@@ -16,6 +16,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _phoneController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
 
+  bool isLoading = false;
   bool autovalidate = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -23,12 +24,18 @@ class _SignInScreenState extends State<SignInScreen> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
+        setState(() {
+          isLoading = true;
+        });
         ApiProvider api = new ApiProvider();
         api.userLogin(
             phone: _phoneController.text, password: _passController.text);
         Navigator.push(context,
             MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
       } catch (e) {
+        setState(() {
+          isLoading = false;
+        });
         Helpers.showTheDialog(context, "error", "error");
       }
     } else {
@@ -67,31 +74,37 @@ class _SignInScreenState extends State<SignInScreen> {
                             SizedBox(
                               height: 15,
                             ),
-                            TextFormField(
-                              autovalidate: autovalidate,
-                              validator: (String arg) {
-                                if (arg.length < 9)
-                                  return 'Name must be more than 9 charater';
-                                else
-                                  return null;
-                              },
-                              onSaved: (String arg) {
-                                _phoneController.text = arg;
-                              },
-                              maxLength: 10,
-                              keyboardType: TextInputType.phone,
-                              cursorColor: Color(0xFFC89C17),
-                              decoration: InputDecoration(
-                                  labelText: AppLocalizations.of(context)
-                                      .translateString('phone'),
-                                  labelStyle: TextStyle(
-                                    color: Color(0xFFC89C17),
-                                  ),
-                                  hasFloatingPlaceholder: true,
-                                  prefixIcon: Icon(Icons.phone_android,
-                                      color: Color(0xFFC89C17)),
-                                  counterStyle:
-                                      TextStyle(color: Color(0xFFC89C17))),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text("+966"),
+                                TextFormField(
+                                  autovalidate: autovalidate,
+                                  validator: (String arg) {
+                                    if (arg.length < 9)
+                                      return 'enter vaild mobile number';
+                                    else
+                                      return null;
+                                  },
+                                  onSaved: (String arg) {
+                                    _phoneController.text = arg;
+                                  },
+                                  maxLength: 10,
+                                  keyboardType: TextInputType.phone,
+                                  cursorColor: Color(0xFFC89C17),
+                                  decoration: InputDecoration(
+                                      labelText: AppLocalizations.of(context)
+                                          .translateString('phone'),
+                                      labelStyle: TextStyle(
+                                        color: Color(0xFFC89C17),
+                                      ),
+                                      hasFloatingPlaceholder: true,
+                                      prefixIcon: Icon(Icons.phone_android,
+                                          color: Color(0xFFC89C17)),
+                                      counterStyle:
+                                          TextStyle(color: Color(0xFFC89C17))),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 15,
@@ -121,18 +134,27 @@ class _SignInScreenState extends State<SignInScreen> {
                             SizedBox(
                               height: 20,
                             ),
-                            FlatButton(
-                              child: Text(AppLocalizations.of(context)
-                                  .translateString('btn_login')),
-                              color: Color(0xFFC89C17),
-                              textColor: Colors.white,
-                              padding: EdgeInsets.only(
-                                  left: 38, right: 38, top: 15, bottom: 15),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              onPressed: () {
-                                _validateInputs();
-                              },
+                            Container(
+                              child: isLoading == true
+                                  ? CircularProgressIndicator(
+                                      backgroundColor: Colors.yellow)
+                                  : FlatButton(
+                                      child: Text(AppLocalizations.of(context)
+                                          .translateString('btn_login')),
+                                      color: Color(0xFFC89C17),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.only(
+                                          left: 38,
+                                          right: 38,
+                                          top: 15,
+                                          bottom: 15),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      onPressed: () {
+                                        _validateInputs();
+                                      },
+                                    ),
                             ),
                             SizedBox(
                               height: 10,
