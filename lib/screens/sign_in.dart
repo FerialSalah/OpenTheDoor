@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/sign_up.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
+import 'package:flutter_openthedoor/utili/helpers.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 import 'forget_password.dart';
 import '../localization.dart';
@@ -20,8 +22,15 @@ class _SignInScreenState extends State<SignInScreen> {
   Future<void> _validateInputs() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+      try {
+        ApiProvider api = new ApiProvider();
+        api.userLogin(
+            phone: _phoneController.text, password: _passController.text);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+      } catch (e) {
+        Helpers.showTheDialog(context, "error", "error");
+      }
     } else {
       setState(() {
         autovalidate = true;
@@ -171,7 +180,6 @@ class _SignInScreenState extends State<SignInScreen> {
                           ],
                         ),
                       ),
-                   
                     ),
                   ),
                 ),
