@@ -38,10 +38,13 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
         centerTitle: true,
       ),
       body: ListView(children: <Widget>[
-        Center(
-            child: isLoading == true
-                ? CircularProgressIndicator(backgroundColor: Colors.yellow)
-                : Container(child: Text(about == null ? "" : about.contentAr))),
+        Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Center(
+              child: isLoading == true
+                  ? CircularProgressIndicator(backgroundColor: Colors.yellow)
+                  : Container(child: Text(about == null ? "" : about.contentAr, style: TextStyle(fontSize:20),))),
+        ),
       ]),
     );
   }

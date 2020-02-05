@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/sign_in.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
+import 'package:flutter_openthedoor/utili/helpers.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 
 import '../localization.dart';
@@ -11,6 +13,38 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController _phoneController = new TextEditingController();
+  TextEditingController _passController = new TextEditingController();
+
+  bool isLoading = false;
+  bool autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  _validateInputs() async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        ApiProvider api = new ApiProvider();
+        await api.getCode(phone: int.parse(_phoneController.text));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ActivationCodePage()));
+      } catch (e) {
+        print(e);
+        setState(() {
+          isLoading = false;
+        });
+        Helpers.showTheDialog(context, "error", "error");
+      }
+    } else {
+      setState(() {
+        autovalidate = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +77,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(30.0),
                         child: Form(
+                          key: _formKey,
+                          autovalidate: autovalidate,
                           child: Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,8 +93,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                     Flexible(
                                       child: TextFormField(
-                                        // validator: ,
-
+                                        autovalidate: autovalidate,
+                                        validator: (String arg) {
+                                          if (arg.length < 9)
+                                            return 'enter vaild mobile number';
+                                          else
+                                            return null;
+                                        },
+                                        onSaved: (String arg) {
+                                          _phoneController.text = arg;
+                                        },
+                                        maxLength: 10,
                                         keyboardType: TextInputType.phone,
                                         cursorColor: Color(0xFFC89C17),
                                         decoration: InputDecoration(
@@ -81,22 +126,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                FlatButton(
-                                  child: Text(AppLocalizations.of(context)
-                                      .translateString('continue')),
-                                  color: Color(0xFFC89C17),
-                                  textColor: Colors.white,
-                                  padding: EdgeInsets.only(
-                                      left: 38, right: 38, top: 15, bottom: 15),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ActivationCodePage()));
-                                  },
+                                Container(
+                                  child: isLoading == true
+                                      ? CircularProgressIndicator(
+                                          backgroundColor: Colors.yellow)
+                                      : FlatButton(
+                                          child: Text(
+                                              AppLocalizations.of(context)
+                                                  .translateString('continue')),
+                                          color: Color(0xFFC89C17),
+                                          textColor: Colors.white,
+                                          padding: EdgeInsets.only(
+                                              left: 38,
+                                              right: 38,
+                                              top: 15,
+                                              bottom: 15),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          onPressed: () {
+                                            _validateInputs();
+                                          },
+                                        ),
                                 ),
                                 SizedBox(
                                   height: 15,
