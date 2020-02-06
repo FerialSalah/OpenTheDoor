@@ -65,6 +65,14 @@ class MapViewScreenState extends State<MapViewScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          getCurrentLocation();
+          
+        },
+        child: Icon(Icons.location_searching),
+        backgroundColor: Colors.yellow,
+      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -111,7 +119,9 @@ class MapViewScreenState extends State<MapViewScreen> {
                       borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
                     Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => SelectProvider()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SelectProvider()));
                   },
                 ),
               ),
