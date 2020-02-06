@@ -66,6 +66,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
         ),
 
       )
+    
     );
   }
 }

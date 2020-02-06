@@ -162,14 +162,11 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (contxt) => LanguageScreen()));
+                // Navigator.pop(context);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (contxt) => LanguageScreen()));
               },
             ),
             ListTile(

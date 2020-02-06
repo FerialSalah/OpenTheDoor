@@ -30,9 +30,10 @@ class _SignInScreenState extends State<SignInScreen> {
         ApiProvider api = new ApiProvider();
         await api.userLogin(
             phone: _phoneController.text, password: _passController.text);
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
       } catch (e) {
+        print(e);
         setState(() {
           isLoading = false;
         });

@@ -13,6 +13,8 @@ class ApiProvider {
   static String updateprofile = "updateprofile";
   static String changepassword = "changepassword";
   static String appInfo = "appinfo";
+  static String aboutUs = "aboutus";
+  static String code = "sendcode";
 
   //////////////////////////////
   //   User related requests  //
@@ -51,8 +53,8 @@ class ApiProvider {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Login can be done by using email or user
     var data = {'phone': phone, 'password': password};
-
     Response response = await Dio().post("$baseUrl$login", data: data);
+    print("======> $response");
     prefs.setInt('id', response.data['user']['id']);
     prefs.setString('token', response.data['user']['api_token']);
     prefs.setString('email', response.data['user']['email']);
@@ -114,13 +116,35 @@ class ApiProvider {
     return 200;
   }
 
+  ////////////////////////////
+
+  Future<int> getCode({int phone}) async {
+    var jsonData = {"phone": "$phone"};
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Response response = await Dio().post("$baseUrl$code", data: jsonData);
+    prefs.setInt('code', response.data['user']['activecode']);
+    prefs.setString('phone', response.data['user']['phone']); 
+    print(response.data);
+    return 200;
+  }
+  ////////////////////////////
+
+  Future<AboutUsModel> getUserInfo() async {
+    AboutUsModel about;
+    Response response = await Dio().get("$baseUrl$code");
+    var data = response.data['aboutus'];
+    print(response.data);
+    about = AboutUsModel.fromApi(data);
+    return about;
+  }
+
   //////////////////////////////
   //     app info requests    //
   //////////////////////////////
 
   Future<AppContactModel> getAppContact() async {
     AppContactModel contact;
-    Response response = await Dio().post("$baseUrl$appInfo");
+    Response response = await Dio().get("$baseUrl$appInfo");
     var data = response.data['appinfo'];
     contact = AppContactModel.fromApi(data);
     return contact;
@@ -130,8 +154,9 @@ class ApiProvider {
 
   Future<AboutUsModel> getAppAbout() async {
     AboutUsModel about;
-    Response response = await Dio().post("$baseUrl$appInfo");
+    Response response = await Dio().get("$baseUrl$aboutUs");
     var data = response.data['aboutus'];
+    print(response.data);
     about = AboutUsModel.fromApi(data);
     return about;
   }
