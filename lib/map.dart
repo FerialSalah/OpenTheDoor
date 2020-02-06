@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoder/geocoder.dart';
+//import 'package:geocoder/geocoder.dart';
 
 class MapViewScreen extends StatefulWidget {
   @override
@@ -33,8 +33,8 @@ class MapViewScreenState extends State<MapViewScreen> {
 
   Future search(double longitude, double latitude) async {
     var first = addresses.first;
-    final coordinates = new Coordinates(longitude, latitude);
-    addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+  //  final coordinates = new Coordinates(longitude, latitude);
+  //  addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
     first = addresses.first;
     address = "${first.featureName} : ${first.addressLine}";
   }

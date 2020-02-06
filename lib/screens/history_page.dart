@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../localization.dart';
+import 'current_service.dart'as current;
 
 
 class HistoryScreen extends StatefulWidget {
@@ -8,7 +9,22 @@ class HistoryScreen extends StatefulWidget {
   _HistoryScreenState createState() => _HistoryScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
+class _HistoryScreenState extends State<HistoryScreen>with SingleTickerProviderStateMixin {
+
+  TabController controller;
+  @override
+  void initState() {
+    controller=new TabController(length: 4, vsync: this);
+    super.initState();
+
+  }
+
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +37,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             onPressed: () => Navigator.pop(context, false)),
       ),
       body: DefaultTabController(
+
           length: 4,
           child: Column(
             children: <Widget>[
@@ -30,6 +47,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   height: 50.0,
                 ),
                 child: TabBar(
+                  controller: controller,
                   isScrollable: true,
                   indicatorColor: Color(0xFFC89C17),
                   tabs: [
@@ -51,27 +69,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               Expanded(
                   child: Container(
-                child: TabBarView(children: [
-                  Center(
-                    child: Container(
-                      child: Text("Current Body"),
-                    ),
-                  ),
-                  Center(
-                    child: Container(
-                      child: Text("INProcess Body"),
-                    ),
-                  ),
-                  Center(
-                    child: Container(
-                      child: Text("Canceled Body"),
-                    ),
-                  ),
-                  Center(
-                    child: Container(
-                      child: Text(" Completed Body"),
-                    ),
-                  ),
+                child: TabBarView(
+                  controller: controller,
+                    children: [
+                    current.HistoryCard(),
+                      current.HistoryCard(),
+                      current.HistoryCard(),
+                      current.HistoryCard(),
+
                 ]),
               ))
             ],
