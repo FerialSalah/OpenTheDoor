@@ -4,7 +4,7 @@ import 'package:flutter_openthedoor/localization.dart';
 import 'package:flutter_openthedoor/screens/selectProvider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-//import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/geocoder.dart';
 
 class MapViewScreen extends StatefulWidget {
   @override
@@ -55,7 +55,7 @@ class MapViewScreenState extends State<MapViewScreen> {
     first = addresses.first;
     final coordinates = new Coordinates(longitude, latitude);
     addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses.first;
+  //  var first = addresses.first;
     address = "${first.featureName} : ${first.addressLine}";
     print(address);
   }

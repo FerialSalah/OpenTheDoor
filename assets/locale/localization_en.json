@@ -37,15 +37,18 @@
   "contact_us":"Contact Us",
   "address":"Address",
   "website":"Website",
-  "about_company": "About Company",
-  "invite_friend": "Invite Friend",
+  "about_company":"About Company",
+  "invite_friend":"Invite Friend",
   "invite_friend_text":"Invite a friend and you both get a bonus",
-  "your_promocode": "Your Promo code",
-  "promo_code_txt": "Promo Code text",
-  "promo_code": "Promo Code",
+  "your_promocode":"Your Promo code",
+  "promo_code_txt":"Promo Code text",
+  "promo_code":"Promo Code",
   "enter_your_promo_code":"Enter Your Promo Code",
-  "get_your_gift": "Get Your Gift",
-  "english": "English"
+  "get_your_gift":"Get Your Gift",
+  "english":"English",
+  "provider_name":"Provider Name",
+  "end_service":"End Service"
+
 
 
 

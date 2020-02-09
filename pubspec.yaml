@@ -20,9 +20,9 @@ dependencies:
   url_launcher: ^5.4.1
   shared_preferences: ^0.5.3+4
   flutter_rating_bar: ^3.0.1+1
+
   flutter_localizations:
     sdk: flutter
-
 
 
 dev_dependencies:

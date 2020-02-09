@@ -97,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                 // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HistoryScreen()));
+                    MaterialPageRoute(builder: (context) => HistoryPage()));
               },
             ),
             ListTile(
@@ -162,11 +162,11 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Navigator.pop(context);
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (contxt) => LanguageScreen()));
+                 Navigator.pop(context);
+                 Navigator.push(
+                     context,
+                     MaterialPageRoute(
+                         builder: (context) => LanguageScreen()));
               },
             ),
             ListTile(

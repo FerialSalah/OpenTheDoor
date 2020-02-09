@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
 import '../localization.dart';
+import 'drawer.dart';
 import 'sign_in.dart';
+import 'history_page.dart';
 
 class ChooseLanguage extends StatelessWidget {
   @override
@@ -104,10 +106,10 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               AppLocalizations appLocalization =
               new AppLocalizations(Locale(languagesMap['English']));
                appLocalization.load();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignInScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SignInScreen()));
                     })
                   },
                   textColor: Color(0xFFC89C17),

@@ -1,98 +1,163 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'inprocess_screen.dart';
+
 class HistoryCard extends StatelessWidget {
   HistoryCard({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return ListView(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                RatingBar(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 25.0,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 50.0,
+                        backgroundColor: Color(0xFFC89C17),
+                        child: Icon(
+                          Icons.account_circle,
+                          color: Colors.white,
+                          size: 50.0,
+                        ),
+                      ),
+                      Text('provider 1 '),
+                      RatingBar(
+                        //  initialRating: 3,
+                        //  minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemSize: 25.0,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Color(0xFFC89C17),
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+                    ],
                   ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
                 ),
-                Text('provider 1 '),
-                CircleAvatar(
-
-                  backgroundColor: Colors.brown.shade800,
-                  child: Text('AH'),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              children: <Widget>[
-                Icon(
-                  Icons.phone,
-                  color: Colors.amber,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        width: 200,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Color(
+                                  0xFFC89C17,
+                                ),
+                                width: 2.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        child: Text(
+                          'accepted from provider',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 15.0, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      IconButton(
+                          icon: Icon(
+                            Icons.call,
+                            color: Color(0xFFC89C17),
+                            size: 30.0,
+                          ),
+                          onPressed: () {})
+                    ],
+                  ),
                 ),
-                Text('خدمة 1'),
-              ],
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              children: <Widget>[
-
-                Text('تم الموافقة من قبل المزود'),
-                Text('10 ريال/ساعة'),
-              ],
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-
-              children: <Widget>[
-                Text(' مسافة الوصول(1)متر'),
-              ],
-            ),
-            ButtonBar(
-
-              children: <Widget>[
-                FlatButton(
-                  color: Colors.amber,
-                  textColor: Colors.white,
-                  child: const Text('إبدأ الخدمة'),
-                  onPressed: () {/* ... */},
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Information About Provider:'),
+                      ]),
                 ),
-                FlatButton(
-                  color: Colors.amber,
-                  textColor: Colors.white,
-                  child: const Text('إلغاء الخدمة'),
-                  onPressed: () {/* ... */},
+                SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        '10 SAR/Hour',
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text('The arrival distance is 1 meter'),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      MaterialButton(
+                        minWidth: 150,
+                        height: 40,
+                        color: Color(0xFFC89C17),
+                        textColor: Colors.white,
+                        child: const Text('Start Service'),
+                        onPressed: () {
+
+                        },
+                      ),
+                      MaterialButton(
+                        minWidth: 100,
+                       height: 40,
+                        color: Color(0xFFC89C17),
+                        textColor: Colors.white,
+                        child: const Text('Cancel Service'),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

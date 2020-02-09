@@ -57,21 +57,34 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
 }
 
-Widget createAlertDialog(BuildContext context) {
-  return AlertDialog(
+createAlertDialog(BuildContext context) {
+    return showDialog(context: context,builder: (BuildContext context){
+      return AlertDialog(
 
-    title: new Text("Language"),
-    content: new Text("English"),
-    actions: <Widget>[
-      new FlatButton(
-        child: new Text("ok"),
-        onPressed: () {
-        //  Navigator.of(context).pop();
-        },
-      ),
-    ],
+        title: new Text("Language"),
+        content:Container(
+          width: 200.0,
+          height: 50.0,
+          child: new Column(
+            children: <Widget>[
+              new Text("English"),
+              new Text("Arabic"),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text("ok"),
+            onPressed: () {
+              //  Navigator.of(context).pop();
+            },
+          ),
+        ],
 
-  );
+      );
+
+    });
+
 
 }
 
