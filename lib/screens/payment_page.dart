@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
 
 import '../localization.dart';
-
-
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -10,6 +9,21 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+  int balance = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getBalance();
+  }
+
+  getBalance() async {
+    ApiProvider api = new ApiProvider();
+    balance = await api.getWallet();
+    print(balance);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                AppLocalizations.of(context).translateString('payment_txt'),
+                "$balance ${AppLocalizations.of(context).translateString('payment_txt')}",
                 style: TextStyle(
                   color: Color(0xFFC89C17),
                   fontSize: 25.0,

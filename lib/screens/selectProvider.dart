@@ -9,6 +9,16 @@ class SelectProvider extends StatefulWidget {
 
 class _SelectProviderState extends State<SelectProvider> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getProviders();
+  }
+
+  getProviders() async {
+    
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -23,8 +33,7 @@ class _SelectProviderState extends State<SelectProvider> {
             }),
       ),
       body: Center(
-
-        child:Padding(
+        child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
@@ -56,9 +65,7 @@ class _SelectProviderState extends State<SelectProvider> {
             ],
           ),
         ),
-
-      )
-    ,
+      ),
     );
   }
 }

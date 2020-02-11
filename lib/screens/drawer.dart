@@ -156,9 +156,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LanguageScreen()));
+                // Navigator.pop(context);
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => LanguageScreen()));
               },
             ),
             ListTile(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_openthedoor/models/aboutApp.dart';
 import 'package:flutter_openthedoor/models/appContact.dart';
+import 'package:flutter_openthedoor/models/providerCardModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
@@ -16,6 +17,9 @@ class ApiProvider {
   static String aboutUs = "aboutus";
   static String code = "sendcode";
   static String checkcode = "checkcode";
+  static String getBalance = "getuserversbalance";
+  static String getProvider =
+      "getserviceprovider?page=1&limit=10&sort=lp&user_lat=12.2121&user_long=12.3333&service_id=9";
 
   //////////////////////////////
   //   User related requests  //
@@ -49,7 +53,7 @@ class ApiProvider {
     print("========");
     print("======> $response");
     prefs.setInt('id', response.data['user']['id']);
-    prefs.setString("phone",response.data['user']['phone']);
+    prefs.setString("phone", response.data['user']['phone']);
     prefs.setString('token', response.data['user']['api_token']);
     prefs.setString('email', response.data['user']['email']);
     prefs.setString('name', response.data['user']['name']);
@@ -158,9 +162,60 @@ class ApiProvider {
     return about;
   }
 
+  ////////////////////////////
+
+  Future<int> getWallet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int balance = 0;
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response = await Dio()
+        .get("$baseUrl$getBalance", options: Options(headers: headers));
+    balance = response.data['userwallet']['user_balance'];
+    return balance;
+  }
+
+  ////////////////////////////
+
+  Future<String> getMyInviteCode() async {
+    ///TODO:Complete this
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String code = "";
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response = await Dio()
+        .get("$baseUrl$getBalance", options: Options(headers: headers));
+    code = response.data['userwallet']['user_balance'];
+    return code;
+  }
+
   //////////////////////////////
   //     app info requests    //
   //////////////////////////////
+
+  Future <List<ProviderCardModel>>getProviders() async {
+    List<ProviderCardModel> providers = new List();
+    var data;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response = await Dio()
+        .get("$baseUrl$getProvider", options: Options(headers: headers));
+    data = response.data['providerservice'];
+    data.forEach((value) {
+      providers.add(ProviderCardModel.fromApi(value));
+    });
+    return providers;
+  }
 
   Future<AppContactModel> getAppContact() async {
     AppContactModel contact;
