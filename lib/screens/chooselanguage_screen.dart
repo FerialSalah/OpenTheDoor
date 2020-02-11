@@ -4,9 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
 import '../localization.dart';
-import 'drawer.dart';
 import 'sign_in.dart';
-import 'history_page.dart';
 
 class ChooseLanguage extends StatelessWidget {
   @override

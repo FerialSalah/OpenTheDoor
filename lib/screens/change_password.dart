@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/screens/profile.dart';
 
 import '../localization.dart';
 
@@ -10,6 +9,8 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+
+  String linkImg ="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,23 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   )
                 ],
               ),
-              profileImage(context)
+               Positioned(
+      top: 110,
+      left: 100,
+      right: 100,
+      child: Container(
+        alignment: Alignment.center,
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 50.0,
+          child: linkImg == null || linkImg == "" ? Icon(
+            Icons.account_circle,
+            color: Color(0xFFC89C17),
+            size: 80.0,
+          ): NetworkImage(linkImg),
+        ),
+      ))
+           
             ],
           ),
         ),

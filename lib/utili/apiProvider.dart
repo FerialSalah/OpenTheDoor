@@ -15,6 +15,7 @@ class ApiProvider {
   static String appInfo = "appinfo";
   static String aboutUs = "aboutus";
   static String code = "sendcode";
+  static String checkcode = "checkcode";
 
   //////////////////////////////
   //   User related requests  //
@@ -36,9 +37,19 @@ class ApiProvider {
       'phone': phone,
       "image": img != null ? await MultipartFile.fromFile(img.path) : null
     });
+    print(prefs.getString('token'));
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
 
-    Response response = await Dio().post("$baseUrl$register", data: data);
+    Response response = await Dio().post("$baseUrl$updateprofile",
+        data: data, options: Options(headers: headers));
+    print("========");
+    print("======> $response");
     prefs.setInt('id', response.data['user']['id']);
+    prefs.setString("phone",response.data['user']['phone']);
     prefs.setString('token', response.data['user']['api_token']);
     prefs.setString('email', response.data['user']['email']);
     prefs.setString('name', response.data['user']['name']);
@@ -50,6 +61,7 @@ class ApiProvider {
   ////////////////////////////
 
   Future<int> userLogin({String phone, String password}) async {
+    print("======= $phone   $password");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Login can be done by using email or user
     var data = {'phone': phone, 'password': password};
@@ -118,14 +130,22 @@ class ApiProvider {
 
   ////////////////////////////
 
-  Future<int> getCode({int phone}) async {
+  Future<int> getCode({String phone}) async {
     var jsonData = {"phone": "$phone"};
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Response response = await Dio().post("$baseUrl$code", data: jsonData);
     prefs.setInt('code', response.data['user']['activecode']);
-    prefs.setString('phone', response.data['user']['phone']); 
+    prefs.setString('phone', response.data['user']['phone']);
     print(response.data);
     return 200;
+  }
+  ////////////////////////////
+
+  verifyCode({String phone, String code}) async {
+    var jsonData = {"phone": "$phone", "code": "$code"};
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Response response = await Dio().post("$baseUrl$checkcode", data: jsonData);
+    prefs.setString("token", response.data['userinfo']['api_token']);
   }
   ////////////////////////////
 

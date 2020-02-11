@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'inprocess_screen.dart';
 
 class HistoryCard extends StatelessWidget {
   HistoryCard({Key key}) : super(key: key);

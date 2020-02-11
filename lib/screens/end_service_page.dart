@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/localization.dart';
 import 'package:flutter_openthedoor/screens/add_note_page.dart';
 import 'package:flutter_openthedoor/screens/report_problem_page.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import 'give_bonus_page.dart';
 
 class EndPage extends StatefulWidget {

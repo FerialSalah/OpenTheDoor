@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../localization.dart';
 import 'current_service.dart'as current;
 import 'inprocess_screen.dart'as inprocess;
 import 'canceled_screen.dart'as canceled;

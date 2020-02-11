@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
+import 'package:flutter_openthedoor/utili/helpers.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../localization.dart';
 
@@ -10,6 +13,24 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+
+String phone = ""; 
+  Future<void> _validateInputs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      print("sss");
+      ApiProvider api = new ApiProvider();
+      api.getCode(phone: phone);
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => ()));
+    } catch (e) {
+      setState(() {
+        Helpers.showTheDialog(context, "error", "incorrect code");
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,8 +89,7 @@ Widget cardSignUp(BuildContext context) {
                   ),
                   Flexible(
                     child: TextFormField(
-                      // validator: ,
-
+onChanged: (String arg){},
                       keyboardType: TextInputType.phone,
                       cursorColor: Color(0xFFC89C17),
                       decoration: InputDecoration(

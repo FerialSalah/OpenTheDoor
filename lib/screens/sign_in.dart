@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/sign_up.dart';
 import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'package:flutter_openthedoor/utili/helpers.dart';
-import 'package:flutter_openthedoor/widgets/ui_widget.dart';
-import 'forget_password.dart';
 import '../localization.dart';
 import 'drawer.dart';
 
@@ -24,10 +22,13 @@ class _SignInScreenState extends State<SignInScreen> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
+        print("sssssss");
         setState(() {
           isLoading = true;
         });
         ApiProvider api = new ApiProvider();
+        print( _passController.text);
+        print(_phoneController.text);
         await api.userLogin(
             phone: _phoneController.text, password: _passController.text);
         Navigator.pushReplacement(context,
@@ -60,6 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   top: MediaQuery.of(context).size.height * 0.1),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Card(
+                
                 elevation: 8,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -78,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextFormField(
                             autovalidate: autovalidate,
                             validator: (String arg) {
-                              if (arg.length < 9)
+                              if (arg.length < 6)
                                 return 'enter vaild mobile number';
                               else
                                 return null;
@@ -86,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onSaved: (String arg) {
                               _phoneController.text = arg;
                             },
-                            maxLength: 10,
+                            maxLength: 11,
                             keyboardType: TextInputType.phone,
                             cursorColor: Color(0xFFC89C17),
                             decoration: InputDecoration(
@@ -107,6 +109,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           TextFormField(
                             validator: (String arg) {
+                              print(arg);
                               if (arg.length < 6)
                                 return 'password must be more than 6 charater';
                               else
@@ -156,10 +159,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           MaterialButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ForgetPassword()));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => sign()));
                             },
                             child: Text(AppLocalizations.of(context)
                                 .translateString('forget_password')),

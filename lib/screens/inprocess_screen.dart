@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/end_service_page.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../localization.dart';
-
 class InProcessScreen extends StatefulWidget {
   @override
   _InProcessScreenState createState() => _InProcessScreenState();
