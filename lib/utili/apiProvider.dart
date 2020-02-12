@@ -41,8 +41,6 @@ class ApiProvider {
     FormData data = new FormData.fromMap({
       'name': userName,
       'email': email,
-      'password': password,
-      'password_confirmation': passwordConfirmation,
       'phone': phone,
       "image": img != null ? await MultipartFile.fromFile(img.path) : null
     });
@@ -65,6 +63,22 @@ class ApiProvider {
     prefs.setString('userAvatar', response.data['user']['user_image']);
     print("========");
     print("======> $response");
+
+    var headers2 = {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+
+    var data2 = {
+      "password": password,
+      "password_confirmation": passwordConfirmation,
+      "user_id": response.data['user']['id'],
+    };
+
+    Response response2 = await Dio().post("${baseUrl}setpassword",
+        data: data2, options: Options(headers: headers2));
+    print("========");
+    print("======> $response2");
     return 200;
   }
   ////////////////////////////
@@ -238,8 +252,8 @@ class ApiProvider {
       "Content-Type": "application/json",
       "Accept": "application/json"
     };
-    Response response =
-        await Dio().get("$baseUrl$historyLink", options: Options(headers: headers));
+    Response response = await Dio()
+        .get("$baseUrl$historyLink", options: Options(headers: headers));
 
     var data = response.data['userserviceinfo'];
 

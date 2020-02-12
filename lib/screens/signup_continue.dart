@@ -33,8 +33,8 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
         ApiProvider api = new ApiProvider();
         await api.registration(
             img: img,
-            password: prefs.getString('password'),
-            passwordConfirmation: prefs.getString('password'),
+            password:_passwordController.text,
+            passwordConfirmation: _passwordController.text,
             userName: _nameController.text,
             phone: prefs.getString('phone'),
             email: _emailController.text);
