@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_openthedoor/screens/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
@@ -136,7 +137,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SignInScreen()));
+                              builder: (context) => MyHomePage()));
                     })
                   },
                   color: Colors.white,

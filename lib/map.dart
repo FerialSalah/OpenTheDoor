@@ -121,7 +121,7 @@ class MapViewScreenState extends State<MapViewScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SelectProvider()));

@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_openthedoor/models/aboutApp.dart';
 import 'package:flutter_openthedoor/models/appContact.dart';
+import 'package:flutter_openthedoor/models/provider.dart';
 import 'package:flutter_openthedoor/models/providerCardModel.dart';
+import 'package:flutter_openthedoor/models/serviceDetails.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
@@ -20,6 +22,9 @@ class ApiProvider {
   static String getBalance = "getuserversbalance";
   static String getProvider =
       "getserviceprovider?page=1&limit=10&sort=lp&user_lat=12.2121&user_long=12.3333&service_id=9";
+  static String providerDetails = "getProvider";
+  static String makeOrderLink = "adduserservice";
+  static String historyLink = "getuserservicehistory";
 
   //////////////////////////////
   //   User related requests  //
@@ -181,7 +186,6 @@ class ApiProvider {
   ////////////////////////////
 
   Future<String> getMyInviteCode() async {
-    ///TODO:Complete this
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String code = "";
     var headers = {
@@ -196,10 +200,93 @@ class ApiProvider {
   }
 
   //////////////////////////////
+
+  Future<int> makeOrder(int id) async {
+    var data = {
+      "service_id": 5,
+      "provider_id": id,
+      "status": "current",
+      "request": 0,
+      "provider_hour_to_finish": 1,
+      "provider_minutes_to_arrive": 1,
+      "payment_method": "cash",
+      "notes": "Notes",
+      "schedule_time": 121,
+      "user_long": 12.2121,
+      "user_lat": 13.222
+    };
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response = await Dio()
+        .post("$baseUrl$makeOrderLink", options: Options(headers: headers));
+  }
+
+  Future<List<List<ServiceDetailsModel>>> getHistory() async {
+    List<List<ServiceDetailsModel>> history = new List();
+    List<ServiceDetailsModel> current = new List();
+    List<ServiceDetailsModel> canceled = new List();
+    List<ServiceDetailsModel> inProccing = new List();
+    List<ServiceDetailsModel> completed = new List();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response =
+        await Dio().get("$baseUrl$historyLink", options: Options(headers: headers));
+
+    var data = response.data['userserviceinfo'];
+
+    data['current'].forEach((value) {
+      current.add(ServiceDetailsModel.fromApi(value));
+    });
+    data['inprocess'].forEach((value) {
+      inProccing.add(ServiceDetailsModel.fromApi(value));
+    });
+    data['completed'].forEach((value) {
+      completed.add(ServiceDetailsModel.fromApi(value));
+    });
+    data['canceled'].forEach((value) {
+      canceled.add(ServiceDetailsModel.fromApi(value));
+    });
+
+    history.add(completed);
+    history.add(inProccing);
+    history.add(current);
+    history.add(canceled);
+    return history;
+  }
+
+  //////////////////////////////
   //     app info requests    //
   //////////////////////////////
 
-  Future <List<ProviderCardModel>>getProviders() async {
+  Future<Provider> getProviderDetails(int id) async {
+    Provider provider;
+    var data;
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+    Response response = await Dio().get(
+        "$baseUrl$providerDetails?provider_id=$id",
+        options: Options(headers: headers));
+    data = response.data['providerinfo'];
+    provider = Provider.fromApi(data);
+    print(provider.name);
+    return provider;
+  }
+
+  Future<List<ProviderCardModel>> getProviders() async {
     List<ProviderCardModel> providers = new List();
     var data;
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/models/serviceDetails.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class HistoryCard extends StatelessWidget {
-  HistoryCard({Key key}) : super(key: key);
+class HistoryCard extends StatefulWidget {
+  List<ServiceDetailsModel> list = new List();
+  HistoryCard({Key key, this.list}) : super(key: key);
 
   @override
+  _HistoryCardState createState() => _HistoryCardState();
+}
+
+class _HistoryCardState extends State<HistoryCard> {
+  List<ServiceDetailsModel> current = new List();
+  @override
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Padding(
+    return ListView.builder(
+      itemCount: widget.list == null ? 0 :widget.list.length ,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
             child: Column(
@@ -134,13 +145,11 @@ class HistoryCard extends StatelessWidget {
                         color: Color(0xFFC89C17),
                         textColor: Colors.white,
                         child: const Text('Start Service'),
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                       ),
                       MaterialButton(
                         minWidth: 100,
-                       height: 40,
+                        height: 40,
                         color: Color(0xFFC89C17),
                         textColor: Colors.white,
                         child: const Text('Cancel Service'),
@@ -155,8 +164,8 @@ class HistoryCard extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
