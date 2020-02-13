@@ -65,11 +65,19 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
           child: InkWell(
             onTap: () {
               img = Helpers.selectImg(context);
-              setState(() {});
+              setState(() {
+                img.path;
+              });
             },
             child: CircleAvatar(
-              backgroundColor: Colors.yellow,
-              backgroundImage: AssetImage(img == null ? "" : img.path),
+              backgroundColor: Colors.white,
+              child: img == null
+                  ? Icon(
+                Icons.account_circle,
+                color: Color(0xFFC89C17),
+                size: 80.0,
+              )
+                  : Image.file(img,width: 80.0,height: 60.0,),
               radius: 50.0,
             ),
           ),
