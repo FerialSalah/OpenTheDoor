@@ -8,6 +8,15 @@ class InviteFriendScreen extends StatefulWidget {
 
 class _InviteFriendScreenState extends State<InviteFriendScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  getMyCode() async{
+    
+
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,

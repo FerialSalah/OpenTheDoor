@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:flutter_openthedoor/screens/drawer.dart';
+import 'package:flutter_openthedoor/screens/signup_continue.dart';
 import 'package:flutter_openthedoor/screens/test.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
 import '../localization.dart';
-import 'drawer.dart';
+import 'edit_profile.dart';
 import 'sign_in.dart';
-import 'history_page.dart';
 
 class ChooseLanguage extends StatelessWidget {
   @override
@@ -62,7 +65,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
   _fetchLocale() async {
     var prefs = await SharedPreferences.getInstance();
 
-    return  Locale(
+    return Locale(
         prefs.getString('language_code'), prefs.getString('country_code'));
   }
 
@@ -83,10 +86,10 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
     return Scaffold(
         backgroundColor: Color(0xFFC89C17),
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translateString('title_select_language')),
+          title: Text(AppLocalizations.of(context)
+              .translateString('title_select_language')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
-
         ),
         body: Center(
           child: Column(
@@ -101,7 +104,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: MaterialButton(
-                  onPressed:()async =>  {
+                  onPressed: () async => {
                     setState(() {
               AppLocalizations(Locale(languagesMap['English']));
               AppLocalizations appLocalization =
@@ -110,7 +113,9 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Test()));
+                      builder: (context) =>SignUpFinalPage()));
+
+
                     })
                   },
                   textColor: Color(0xFFC89C17),

@@ -14,7 +14,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _phoneController = new TextEditingController();
-  TextEditingController _passController = new TextEditingController();
 
   bool isLoading = false;
   bool autovalidate = false;
@@ -28,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           isLoading = true;
         });
         ApiProvider api = new ApiProvider();
-        await api.getCode(phone: int.parse(_phoneController.text));
+        await api.getCode(phone:_phoneController.text);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ActivationCodePage()));
       } catch (e) {

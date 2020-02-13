@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/models/providerCardModel.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
+import 'package:flutter_openthedoor/widgets/providerCard.dart';
 
 import 'drawer.dart';
 
@@ -8,6 +11,20 @@ class SelectProvider extends StatefulWidget {
 }
 
 class _SelectProviderState extends State<SelectProvider> {
+  List<ProviderCardModel> provider = new List();
+
+  @override
+  void initState() {
+    super.initState();
+    getProviders();
+  }
+
+  getProviders() async {
+    ApiProvider api = new ApiProvider();
+    provider = await api.getProviders();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,42 +40,21 @@ class _SelectProviderState extends State<SelectProvider> {
             }),
       ),
       body: Center(
-
-        child:Padding(
+        child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              Text(
-                "لايوجد مساعدين",
-                style: TextStyle(
-                  fontSize: 25.0,
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-
-              SizedBox(
-                height: 10.0,
-              ),
-              // MaterialButton(
-              //   minWidth: 300.0,
-              //   height: 20.0,
-              //   child: Text(""),
-              //   color: Color(0xFFC89C17),
-              //   textColor: Colors.white,
-              //   padding:
-              //   EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(5)),
-              //   onPressed: () {},
-              // ),
-            ],
+          child: ListView.builder(
+            itemCount: provider.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ProviderCard(
+                id: provider[index].providerId,
+                name: provider[index].name,
+                rating: provider[index].ratCount,
+                price: provider[index].servicePrice,
+              );
+            },
           ),
         ),
-
-      )
-    ,
+      ),
     );
   }
 }

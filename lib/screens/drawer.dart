@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
 import 'package:flutter_openthedoor/screens/promo_code_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../localization.dart';
 import 'about_us_page.dart';
 import '../map.dart';
@@ -12,7 +13,28 @@ import 'invite_friend_page.dart';
 import 'language_page.dart';
 import 'notification_page.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String name = "";
+  String linkImg = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
+
+  getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    name = prefs.getString('name');
+    linkImg = prefs.getString('userAvatar');
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +54,9 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      'Name',
+                      name == null || name =="" ?'user':name,
                       textAlign: TextAlign.center,
-                      style:TextStyle(color: Colors.white,fontSize: 20.0),
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
                     SizedBox(
                       height: 10,
@@ -42,30 +64,17 @@ class MyHomePage extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 50.0,
-                      child: Icon(
+                      child: linkImg == null || linkImg == "" ? Icon(
                         Icons.account_circle,
                         size: 80.0,
                         color: Color(0xFFC89C17),
-                      ),
+                      ): NetworkImage(linkImg) ,
                     )
                   ],
                 ),
               )),
               color: Color(0xFFC89C17),
             ),
-//                UserAccountsDrawerHeader(
-//
-//                  accountName: Text('Name',textAlign: TextAlign.center),
-//                   decoration: BoxDecoration(color: Color(0xFFC89C17),),
-//                  currentAccountPicture: CircleAvatar(radius: 50.0,backgroundColor: Colors.white,),
-//
-//                ),
-//                DrawerHeader(
-//                  decoration: BoxDecoration(
-//                    color: Color(0xFFC89C17),
-//                  ),
-//
-
             ListTile(
               title: Text('profile'),
               leading: Icon(
@@ -75,9 +84,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProfileScreen()));
@@ -92,9 +98,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HistoryPage()));
@@ -109,9 +112,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PaymentScreen()));
@@ -126,9 +126,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PromoCodeScreen()));
@@ -143,9 +140,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(
                     context,
@@ -162,11 +156,9 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                 Navigator.pop(context);
-                 Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                         builder: (context) => LanguageScreen()));
+                // Navigator.pop(context);
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => LanguageScreen()));
               },
             ),
             ListTile(
@@ -178,9 +170,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (contxt) => ContactUsScreen()));
@@ -195,9 +184,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (contxt) => AboutUsScreen()));
@@ -212,9 +198,6 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
                 Navigator.push(
                     context,
@@ -231,11 +214,7 @@ class MyHomePage extends StatelessWidget {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.pop(context);
-
               },
             ),
             SizedBox(

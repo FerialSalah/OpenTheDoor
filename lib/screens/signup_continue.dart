@@ -16,6 +16,7 @@ class SignUpFinalPage extends StatefulWidget {
 class _SignUpFinalPageState extends State<SignUpFinalPage> {
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
 
   bool isLoading = false;
   bool autovalidate = false;
@@ -32,14 +33,15 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
         ApiProvider api = new ApiProvider();
         await api.registration(
             img: img,
-            password: prefs.getString('password'),
-            passwordConfirmation: prefs.getString('password'),
-            phone: _nameController.text,
+            password:_passwordController.text,
+            passwordConfirmation: _passwordController.text,
+            userName: _nameController.text,
+            phone: prefs.getString('phone'),
             email: _emailController.text);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MyHomePage()));
       } catch (e) {
-        print(e);
+        print(e.response);
         setState(() {
           isLoading = false;
         });
@@ -69,12 +71,6 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
               backgroundColor: Colors.yellow,
               backgroundImage: AssetImage(img == null ? "" : img.path),
               radius: 50.0,
-
-//          child: Icon(
-//            Icons.account_circle,
-//            color: Color(0xFFC89C17),
-//
-//          ),
             ),
           ),
         ));
@@ -161,6 +157,62 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                                   ),
                                   hasFloatingPlaceholder: true,
                                   prefixIcon: Icon(Icons.email,
+                                      color: Color(0xFFC89C17)),
+                                  counterStyle:
+                                      TextStyle(color: Color(0xFFC89C17))),
+                            ),
+                            TextFormField(
+                              validator: (String arg) {
+                                if (arg.length < 6)
+                                  return 'enter password with 6 characters';
+                                else
+                                  return null;
+                              },
+                              controller: _passwordController,
+                              obscureText: true,
+                              keyboardType: TextInputType.text,
+                              cursorColor: Color(0xFFC89C17),
+                              onSaved: (String arg) {
+                                print(arg);
+                                _passwordController.text = arg;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: AppLocalizations.of(context)
+                                      .translateString("password"),
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFC89C17),
+                                  ),
+                                  hasFloatingPlaceholder: true,
+                                  prefixIcon: Icon(Icons.lock,
+                                      color: Color(0xFFC89C17)),
+                                  counterStyle:
+                                      TextStyle(color: Color(0xFFC89C17))),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              onChanged: (String arg) {
+                                print(arg);
+                                print(_passwordController.text);
+                              },
+                              validator: (String arg) {
+                                if (_passwordController.text == arg)
+                                  return null;
+                                else
+                                  return 'passwords not matched';
+                              },
+                              obscureText: true,
+                              keyboardType: TextInputType.text,
+                              cursorColor: Color(0xFFC89C17),
+                              decoration: InputDecoration(
+                                  labelText: AppLocalizations.of(context)
+                                      .translateString("confirm _password"),
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFC89C17),
+                                  ),
+                                  hasFloatingPlaceholder: true,
+                                  prefixIcon: Icon(Icons.lock,
                                       color: Color(0xFFC89C17)),
                                   counterStyle:
                                       TextStyle(color: Color(0xFFC89C17))),

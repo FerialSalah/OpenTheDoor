@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/screens/profile.dart';
-
 import '../localization.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -9,13 +7,14 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  String linkImg = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text(
-            AppLocalizations.of(context).translateString('edit_profile')),
+        title:
+            Text(AppLocalizations.of(context).translateString('edit_profile')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -32,11 +31,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 4),
                       padding: EdgeInsets.only(left: 10, right: 10),
-                      child:editProfileCard(context)
-                  )
+                      child: editProfileCard(context))
                 ],
               ),
-              profileImage(context)
+              Positioned(
+                  top: 110,
+                  left: 100,
+                  right: 100,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 50.0,
+                      child: linkImg == null || linkImg == ""
+                          ? Icon(
+                              Icons.account_circle,
+                              color: Color(0xFFC89C17),
+                              size: 80.0,
+                            )
+                          : NetworkImage(linkImg),
+                    ),
+                  ))
             ],
           ),
         ),
@@ -45,9 +60,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 }
 
-
-Widget editProfileCard(BuildContext context){
-  return  Card(
+Widget editProfileCard(BuildContext context) {
+  return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),
@@ -58,7 +72,7 @@ Widget editProfileCard(BuildContext context){
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           TextFormField(
-            keyboardType: TextInputType. text,
+            keyboardType: TextInputType.text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
                 labelText: AppLocalizations.of(context).translateString("name"),
@@ -66,48 +80,45 @@ Widget editProfileCard(BuildContext context){
                   color: Color(0xFFC89C17),
                 ),
                 hasFloatingPlaceholder: true,
-                prefixIcon: Icon(Icons.account_circle, color: Color(0xFFC89C17)),
+                prefixIcon:
+                    Icon(Icons.account_circle, color: Color(0xFFC89C17)),
                 counterStyle: TextStyle(color: Color(0xFFC89C17))),
-
           ),
           SizedBox(
             height: 15,
           ),
           TextFormField(
-
             keyboardType: TextInputType.emailAddress,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("email"),
+                labelText:
+                    AppLocalizations.of(context).translateString("email"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
                 hasFloatingPlaceholder: true,
                 prefixIcon: Icon(Icons.email, color: Color(0xFFC89C17)),
                 counterStyle: TextStyle(color: Color(0xFFC89C17))),
-
           ),
           SizedBox(
             height: 15,
           ),
           TextFormField(
-
-            keyboardType: TextInputType. phone,
+            keyboardType: TextInputType.phone,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("phone"),
+                labelText:
+                    AppLocalizations.of(context).translateString("phone"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
                 hasFloatingPlaceholder: true,
                 prefixIcon: Icon(Icons.phone_android, color: Color(0xFFC89C17)),
                 counterStyle: TextStyle(color: Color(0xFFC89C17))),
-
           ),
           SizedBox(
             height: 15,
           ),
-
           MaterialButton(
             minWidth: 250.0,
             height: 10.0,
@@ -115,20 +126,12 @@ Widget editProfileCard(BuildContext context){
             color: Color(0xFFC89C17),
             textColor: Colors.white,
             padding: EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            onPressed: () {
-
-
-            },
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            onPressed: () {},
           ),
-
-
         ],
       ),
     ),
   );
-
-
-
-
 }

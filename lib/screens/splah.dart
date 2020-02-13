@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'drawer.dart';
-
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -21,12 +19,12 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> navigationPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token');
-    if (token != null) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
-    } else {
+    // if (token != null) {
+    //   Navigator.push(context,
+    //       MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+    // } else {
       Navigator.of(context).pushReplacementNamed('/ChooseLanguage');
-    }
+    // }
   }
 
   @override

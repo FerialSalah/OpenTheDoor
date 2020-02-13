@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_openthedoor/screens/signup_password.dart';
+import 'package:flutter_openthedoor/screens/signup_continue.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'package:flutter_openthedoor/utili/helpers.dart';
 import 'package:flutter_openthedoor/widgets/ui_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,14 +20,17 @@ class _ActivationCodePageState extends State<ActivationCodePage> {
 
   Future<void> _validateInputs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getInt('code') == code) {
+    try {
       _formKey.currentState.save();
       print("sss");
+      ApiProvider api = new ApiProvider();
+      api.verifyCode(phone: prefs.getString("phone"), code: "$code");
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PasswordPage()));
-    } else {
+          context, MaterialPageRoute(builder: (context) => SignUpFinalPage()));
+    } catch (e) {
       setState(() {
         autovalidate = true;
+        Helpers.showTheDialog(context, "error", "incorrect code");
       });
     }
   }

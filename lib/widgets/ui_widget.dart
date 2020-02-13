@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/activation_code.dart';
 import 'package:flutter_openthedoor/screens/sign_in.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../localization.dart';
 
@@ -72,6 +71,7 @@ Widget continueButton(BuildContext context) {
     padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
     onPressed: () {
+      
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => ActivationCodePage()));
     },

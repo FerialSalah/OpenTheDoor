@@ -3,160 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/end_service_page.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../localization.dart';
-
 class InProcessScreen extends StatefulWidget {
   @override
   _InProcessScreenState createState() => _InProcessScreenState();
 }
 
 class _InProcessScreenState extends State<InProcessScreen> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('clicked');
+        onTap: () {
+          print('clicked');
 
-        setState(() {
-          showDialog(context: context,builder: (_){
-           return DialogCard();
-
+          setState(() {
+            showDialog(
+                context: context,
+                builder: (_) {
+                  return DialogCard();
+                });
           });
-
-        });
-      },
-      child:ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundColor: Color(0xFFC89C17),
-                          child: Icon(
-                            Icons.account_circle,
-                            color: Colors.white,
-                            size: 50.0,
-                          ),
-                        ),
-                        Text('provider 1 '),
-                        RatingBar(
-                          //  initialRating: 3,
-                          //  minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemSize: 25.0,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Color(0xFFC89C17),
-                          ),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Information About Provider:'),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '10 SAR/Hour',
-                          style: TextStyle(fontSize: 15.0),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text('The arrival distance is 1 meter'),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        MaterialButton(
-                          minWidth: 150,
-                          height: 40,
-                          color: Color(0xFFC89C17),
-                          textColor: Colors.white,
-                          child: const Text('Start Service'),
-                          onPressed: () {
-
-                          },
-                        ),
-                        MaterialButton(
-                          minWidth: 100,
-                          height: 40,
-                          color: Color(0xFFC89C17),
-                          textColor: Colors.white,
-                          child: const Text('Cancel Service'),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      )
-    );
+        },
+        child: ListView.builder(
+          itemCount: 0,
+          itemBuilder: (BuildContext context, int index) {},
+        ));
   }
-
-
 }
-
-
 
 class DialogCard extends StatefulWidget {
   @override
@@ -164,32 +36,28 @@ class DialogCard extends StatefulWidget {
 }
 
 class _DialogCardState extends State<DialogCard> {
-
-
   @override
   void initState() {
     startOrStop();
     super.initState();
   }
 
-
-  Stopwatch watch=new Stopwatch();
+  Stopwatch watch = new Stopwatch();
   Timer timer;
 
-  String elapsedTime='';
-  bool startStop=true;
+  String elapsedTime = '';
+  bool startStop = true;
 
   updateTime(Timer timer) {
     if (watch.isRunning) {
       setState(() {
-     //   print("startstop Inside=$startStop");
         elapsedTime = transformMilliSeconds(watch.elapsedMilliseconds);
       });
     }
   }
 
   startOrStop() {
-    if(startStop) {
+    if (startStop) {
       startWatch();
     } else {
       stopWatch();
@@ -242,7 +110,6 @@ class _DialogCardState extends State<DialogCard> {
         width: 500.0,
         height: 400.0,
         child: Column(
-
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -282,27 +149,33 @@ class _DialogCardState extends State<DialogCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-
-                  Text('Provider Name',style: TextStyle(color: Color(0xFFC89C17),fontSize: 20.0),),
-
-                  IconButton(icon: Icon(Icons.call,color: Color(0xFFC89C17),size: 30.0,), onPressed: (){
-
-                  })
+                  Text(
+                    'Provider Name',
+                    style: TextStyle(color: Color(0xFFC89C17), fontSize: 20.0),
+                  ),
+                  IconButton(
+                      icon: Icon(
+                        Icons.call,
+                        color: Color(0xFFC89C17),
+                        size: 30.0,
+                      ),
+                      onPressed: () {})
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
-                    Text('Service Rate',style: TextStyle(color: Color(0xFFC89C17),fontSize: 15.0),),
-                    SizedBox(width: 10.0,),
-
-
+                    Text(
+                      'Service Rate',
+                      style:
+                          TextStyle(color: Color(0xFFC89C17), fontSize: 15.0),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
                     RatingBar(
                       // initialRating: 3,
                       minRating: 1,
@@ -319,47 +192,47 @@ class _DialogCardState extends State<DialogCard> {
                         print(rating);
                       },
                     ),
-
-                  ]
-
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-
-                    Text('Service Cost:',style: TextStyle(color: Colors.black,fontSize: 15.0),),
-                    SizedBox(width: 10.0,),
-                    Text('10 SAR/Hour',style: TextStyle(fontSize: 15.0),),
-
-
-
-                  ]
-
-              ),
+                  ]),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
-                    Text('Service Time:',style: TextStyle(color: Colors.black,fontSize: 15.0),),
-                    SizedBox(width: 10.0,),
-                    Text(elapsedTime,style: TextStyle(fontSize: 15.0),),
-
-
-
-                  ]
-
-              ),
+                    Text(
+                      'Service Cost:',
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      '10 SAR/Hour',
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ]),
             ),
-
-            SizedBox(height: 30.0,),
-
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Service Time:',
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      elapsedTime,
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ]),
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
             MaterialButton(
               minWidth: 200.0,
               height: 20.0,
@@ -372,21 +245,16 @@ class _DialogCardState extends State<DialogCard> {
               onPressed: () {
                 stopWatch();
 
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>EndPage()));
-
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EndPage()));
               },
             ),
-
-            SizedBox(height: 20.0,),
-
-
-
+            SizedBox(
+              height: 20.0,
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
