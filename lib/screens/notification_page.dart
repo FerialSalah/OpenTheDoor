@@ -8,7 +8,7 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translateString('notifications')),
+          title: Text(AppLocalizations.of(context).text('notifications')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
         ),
@@ -17,7 +17,7 @@ class NotificationScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                AppLocalizations.of(context).translateString('notification_data'),
+                AppLocalizations.of(context).text('notification_data'),
                 style: TextStyle(
                   fontSize: 25.0,
                 ),

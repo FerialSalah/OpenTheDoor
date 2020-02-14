@@ -50,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
         title:
-            Text(AppLocalizations.of(context).translateString('btn_register')),
+            Text(AppLocalizations.of(context).text('btn_register')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -108,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         decoration: InputDecoration(
                                             labelText:
                                                 AppLocalizations.of(context)
-                                                    .translateString('phone'),
+                                                    .text('phone'),
                                             labelStyle: TextStyle(
                                               color: Color(0xFFC89C17),
                                             ),
@@ -132,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       : FlatButton(
                                           child: Text(
                                               AppLocalizations.of(context)
-                                                  .translateString('continue')),
+                                                  .text('continue')),
                                           color: Color(0xFFC89C17),
                                           textColor: Colors.white,
                                           padding: EdgeInsets.only(
@@ -163,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                     Text(
                                       AppLocalizations.of(context)
-                                          .translateString(
+                                          .text(
                                               "don't_have_account"),
                                       style: TextStyle(color: Colors.black),
                                     ),
@@ -177,7 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       },
                                       textColor: Color(0xFFC89C17),
                                       child: Text(AppLocalizations.of(context)
-                                          .translateString('btn_login')),
+                                          .text('btn_login')),
                                     ),
                                   ],
                                 )

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/localization.dart';
 import 'package:flutter_openthedoor/screens/selectProvider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -113,7 +114,7 @@ class MapViewScreenState extends State<MapViewScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: FlatButton(
-                  child: Text("اختار خدمة"),
+                  child: Text(AppLocalizations.of(context).text("choose_service")),
                   color: Color(0xFFC89C17),
                   textColor: Colors.white,
                   padding:

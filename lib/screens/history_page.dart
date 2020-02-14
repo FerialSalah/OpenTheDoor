@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/localization.dart';
 import 'package:flutter_openthedoor/models/serviceDetails.dart';
 import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'inprocess_screen.dart' as inprocess;
@@ -63,12 +64,12 @@ class _HistoryScreenState extends State<HistoryScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('history'),
+        title: Text('History'),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context)),
+            onPressed: () => Navigator.pop(context, false)),
       ),
       body: DefaultTabController(
           length: 4,
@@ -85,11 +86,11 @@ class _HistoryScreenState extends State<HistoryScreen>
                   indicatorColor: Color(0xFFC89C17),
                   tabs: [
                     Tab(
-                      text: ('Current'),
+                      text: ("Current"),
                     ),
-                    Tab(text: ("In Process")),
-                    Tab(text: ("Canceled")),
-                    Tab(text: ("Completed")),
+                    Tab(text: ('In Process')),
+                    Tab(text: ('Canceled')),
+                    Tab(text: ('Completed')),
                   ],
                   labelColor: Color(0xFFC89C17),
                   labelStyle: TextStyle(fontSize: 15),

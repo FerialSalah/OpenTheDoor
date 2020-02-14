@@ -71,13 +71,15 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
             },
             child: CircleAvatar(
               backgroundColor: Colors.white,
-              child: img == null
-                  ? Icon(
-                Icons.account_circle,
-                color: Color(0xFFC89C17),
-                size: 80.0,
-              )
-                  : Image.file(img,width: 80.0,height: 60.0,),
+              child:ClipOval(
+                child:  img == null
+                    ? Icon(
+                  Icons.account_circle,
+                  color: Color(0xFFC89C17),
+                  size: 80.0,
+                )
+                    : Image.file(img,width: 100.0,height: 100.0,fit: BoxFit.cover,),
+              ),
               radius: 50.0,
             ),
           ),
@@ -90,7 +92,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
         title:
-            Text(AppLocalizations.of(context).translateString('btn_register')),
+            Text(AppLocalizations.of(context).text('btn_register')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -134,7 +136,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                               cursorColor: Color(0xFFC89C17),
                               decoration: InputDecoration(
                                   labelText: AppLocalizations.of(context)
-                                      .translateString('name'),
+                                      .text('name'),
                                   labelStyle: TextStyle(
                                     color: Color(0xFFC89C17),
                                   ),
@@ -159,7 +161,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                               cursorColor: Color(0xFFC89C17),
                               decoration: InputDecoration(
                                   labelText: AppLocalizations.of(context)
-                                      .translateString('email'),
+                                      .text('email'),
                                   labelStyle: TextStyle(
                                     color: Color(0xFFC89C17),
                                   ),
@@ -186,7 +188,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                               },
                               decoration: InputDecoration(
                                   labelText: AppLocalizations.of(context)
-                                      .translateString("password"),
+                                      .text("password"),
                                   labelStyle: TextStyle(
                                     color: Color(0xFFC89C17),
                                   ),
@@ -215,7 +217,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                               cursorColor: Color(0xFFC89C17),
                               decoration: InputDecoration(
                                   labelText: AppLocalizations.of(context)
-                                      .translateString("confirm _password"),
+                                      .text("confirm _password"),
                                   labelStyle: TextStyle(
                                     color: Color(0xFFC89C17),
                                   ),
@@ -230,7 +232,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                             ),
                             FlatButton(
                               child: Text(AppLocalizations.of(context)
-                                  .translateString('btn_register')),
+                                  .text('btn_register')),
                               color: Color(0xFFC89C17),
                               textColor: Colors.white,
                               padding: EdgeInsets.only(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/localization.dart';
 import 'package:flutter_openthedoor/models/providerCardModel.dart';
 import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'package:flutter_openthedoor/widgets/providerCard.dart';
@@ -29,7 +30,7 @@ class _SelectProviderState extends State<SelectProvider> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(""),
+        title: Text(AppLocalizations.of(context).text("select_provider")),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(

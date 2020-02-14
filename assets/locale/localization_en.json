@@ -39,6 +39,7 @@
   "website":"Website",
   "about_company":"About Company",
   "invite_friend":"Invite Friend",
+  "logout":"LogOut",
   "invite_friend_text":"Invite a friend and you both get a bonus",
   "your_promocode":"Your Promo code",
   "promo_code_txt":"Promo Code text",
@@ -47,8 +48,9 @@
   "get_your_gift":"Get Your Gift",
   "english":"English",
   "provider_name":"Provider Name",
-  "end_service":"End Service"
-
+  "end_service":"End Service",
+  "choose_service":"Choose Service",
+  "select_provider":"Select Provider"
 
 
 

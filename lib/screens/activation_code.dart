@@ -84,7 +84,7 @@ class _ActivationCodePageState extends State<ActivationCodePage> {
                               cursorColor: Color(0xFFC89C17),
                               decoration: InputDecoration(
                                   labelText: AppLocalizations.of(context)
-                                      .translateString('code'),
+                                      .text('code'),
                                   labelStyle: TextStyle(
                                     color: Color(0xFFC89C17),
                                   ),
@@ -106,7 +106,7 @@ class _ActivationCodePageState extends State<ActivationCodePage> {
                                       backgroundColor: Colors.yellow)
                                   : FlatButton(
                                       child: Text(AppLocalizations.of(context)
-                                          .translateString('continue')),
+                                          .text('continue')),
                                       color: Color(0xFFC89C17),
                                       textColor: Colors.white,
                                       padding: EdgeInsets.only(

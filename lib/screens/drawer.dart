@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translateString('title_home')),
+        title: Text(AppLocalizations.of(context).text('title_home')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Color(0xFFC89C17),
             ),
             ListTile(
-              title: Text('profile'),
+              title: Text(AppLocalizations.of(context).text('profile')),
               leading: Icon(
                 Icons.account_circle,
                 color: Color(0xFFC89C17),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('History'),
+              title: Text(AppLocalizations.of(context).text('history')),
               leading: Icon(
                 Icons.history,
                 color: Color(0xFFC89C17),
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Balance'),
+              title: Text(AppLocalizations.of(context).text('balance')),
               leading: Icon(
                 Icons.account_balance_wallet,
                 color: Color(0xFFC89C17),
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Promo Code'),
+              title: Text(AppLocalizations.of(context).text('promo_code')),
               leading: Icon(
                 Icons.code,
                 color: Color(0xFFC89C17),
@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Notifications'),
+              title: Text(AppLocalizations.of(context).text('notifications')),
               leading: Icon(
                 Icons.notifications,
                 color: Color(0xFFC89C17),
@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Language'),
+              title: Text(AppLocalizations.of(context).text("language")),
               leading: Icon(
                 Icons.language,
                 color: Color(0xFFC89C17),
@@ -156,13 +156,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                // Navigator.pop(context);
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => LanguageScreen()));
+                 Navigator.pop(context);
+                 Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => LanguageScreen()));
               },
             ),
             ListTile(
-              title: Text('Contact Us'),
+              title: Text(AppLocalizations.of(context).text('contact_us')),
               leading: Icon(
                 Icons.phone,
                 color: Color(0xFFC89C17),
@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('About Company'),
+              title: Text(AppLocalizations.of(context).text('about_company')),
               leading: Icon(
                 Icons.help,
                 color: Color(0xFFC89C17),
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Invite Friend'),
+              title: Text(AppLocalizations.of(context).text('invite_friend')),
               leading: Icon(
                 Icons.share,
                 color: Color(0xFFC89C17),
@@ -206,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Logout'),
+              title: Text(AppLocalizations.of(context).text('logout')),
               leading: Icon(
                 Icons.exit_to_app,
                 color: Color(0xFFC89C17),

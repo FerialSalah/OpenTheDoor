@@ -40,7 +40,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title:
-              Text(AppLocalizations.of(context).translateString('contact_us')),
+              Text(AppLocalizations.of(context).text('contact_us')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
         ),
@@ -54,7 +54,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       color: Color(0xFFC89C17),
                     ),
                     title: Text(
-                        AppLocalizations.of(context).translateString('phone')),
+                        AppLocalizations.of(context).text('phone')),
                     subtitle: Text(
                       contact.phone,
                     ),
@@ -90,7 +90,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       color: Color(0xFFC89C17),
                     ),
                     title: Text(AppLocalizations.of(context)
-                        .translateString('address')),
+                        .text('address')),
                     subtitle: Text(contact.addressAr),
                   ),
                   ListTile(
@@ -99,7 +99,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       color: Color(0xFFC89C17),
                     ),
                     title: Text(AppLocalizations.of(context)
-                        .translateString('website')),
+                        .text('website')),
                     subtitle: Text(
                       'http://openthedoor.tawartec.com',
                     ),

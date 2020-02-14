@@ -20,7 +20,7 @@ Widget phoneTextFiled(BuildContext context) {
           keyboardType: TextInputType.phone,
           cursorColor: Color(0xFFC89C17),
           decoration: InputDecoration(
-              labelText: AppLocalizations.of(context).translateString('phone'),
+              labelText: AppLocalizations.of(context).text('phone'),
               labelStyle: TextStyle(
                 color: Color(0xFFC89C17),
               ),
@@ -53,7 +53,7 @@ Widget passwordTextFiled(BuildContext context) {
   return TextFormField(
     obscureText: true,
     decoration: InputDecoration(
-      labelText: AppLocalizations.of(context).translateString('password_txt'),
+      labelText: AppLocalizations.of(context).text('password_txt'),
       hasFloatingPlaceholder: true,
       prefixIcon: Icon(
         Icons.lock,
@@ -65,7 +65,7 @@ Widget passwordTextFiled(BuildContext context) {
 
 Widget continueButton(BuildContext context) {
   return FlatButton(
-    child: Text(AppLocalizations.of(context).translateString('continue')),
+    child: Text(AppLocalizations.of(context).text('continue')),
     color: Color(0xFFC89C17),
     textColor: Colors.white,
     padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
@@ -109,7 +109,7 @@ Widget cardSignUp(BuildContext context) {
                       cursorColor: Color(0xFFC89C17),
                       decoration: InputDecoration(
                           labelText: AppLocalizations.of(context)
-                              .translateString('phone'),
+                              .text('phone'),
                           labelStyle: TextStyle(
                             color: Color(0xFFC89C17),
                           ),
@@ -140,7 +140,7 @@ Widget cardSignUp(BuildContext context) {
                   ),
                   Text(
                     AppLocalizations.of(context)
-                        .translateString("don't_have_account"),
+                        .text("don't_have_account"),
                     style: TextStyle(color: Colors.black),
                   ),
                   FlatButton(
@@ -152,7 +152,7 @@ Widget cardSignUp(BuildContext context) {
                     },
                     textColor: Color(0xFFC89C17),
                     child: Text(AppLocalizations.of(context)
-                        .translateString('btn_login')),
+                        .text('btn_login')),
                   ),
                 ],
               )

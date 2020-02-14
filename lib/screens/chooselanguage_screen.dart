@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_openthedoor/screens/drawer.dart';
+import 'package:flutter_openthedoor/screens/providerDetails.dart';
+import 'package:flutter_openthedoor/screens/signup_continue.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
 import '../localization.dart';
 import 'edit_profile.dart';
 import 'sign_in.dart';
+class ChooseLanguage extends StatefulWidget {
+  @override
+  _ChooseLanguageState createState() => _ChooseLanguageState();
+}
 
-class ChooseLanguage extends StatelessWidget {
+class _ChooseLanguageState extends State<ChooseLanguage> {
+
+  AppLocalizationsDelegate _appLocalizationsDelegate;
+
+
+  @override
+  void initState() {
+
+    super.initState();
+    _appLocalizationsDelegate=new AppLocalizationsDelegate(newLocale: null);
+    application.onLocaleChanged=onLocaleChange;
+  }
+
+  void onLocaleChange(Locale locale) {
+    setState(() {
+      _appLocalizationsDelegate = AppLocalizationsDelegate(newLocale: locale);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ChooseLanguagePage(),
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('ar', ''),
-      ],
-      localeResolutionCallback: (locale, supportedLocales) {
-        // Check if the current device locale is supported
-        for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode &&
-              supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
-          }
-        }
-        // If the locale of the device is not supported, use the first one
-        // from the list (English, in this case).
-        return supportedLocales.first;
-      },
+        debugShowCheckedModeBanner: false,
+        home: ChooseLanguagePage(),
+    localizationsDelegates: [
+    _appLocalizationsDelegate,
+    const AppLocalizationsDelegate(),
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: application.supportedLocales(),
     );
   }
+
+
 }
+
+
+
 
 class ChooseLanguagePage extends StatefulWidget {
   @override
@@ -57,24 +73,8 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
     languagesList[1]: languageCodesList[1],
   };
 
-  _fetchLocale() async {
-    var prefs = await SharedPreferences.getInstance();
+  String language;
 
-    return Locale(
-        prefs.getString('language_code'), prefs.getString('country_code'));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this._fetchLocale().then((locale) {
-      setState(() {
-        this.locale = locale;
-      });
-    });
-    _appLocalizationsDelegate = AppLocalizationsDelegate();
-    application.onLocaleChanged = onLocaleChange;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
         backgroundColor: Color(0xFFC89C17),
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)
-              .translateString('title_select_language')),
+              .text('title_select_language')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
         ),
@@ -101,11 +101,11 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
                 child: MaterialButton(
                   onPressed: () async => {
                     setState(() {
-              AppLocalizations(Locale(languagesMap['English']));
-              AppLocalizations appLocalization =
-              new AppLocalizations(Locale(languagesMap['English']));
-               appLocalization.load();
-              Navigator.push(
+                       language="English";
+                      print(language);
+                      application.onLocaleChanged(Locale(languagesMap[language]));
+
+                      Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>SignInScreen()));
@@ -132,10 +132,11 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
                 child: MaterialButton(
                   onPressed: () => {
                     setState(() {
-                      AppLocalizations(Locale(languagesMap['Arabic']));
-                      AppLocalizations appLocalization =
-                          new AppLocalizations(Locale(languagesMap['Arabic']));
-                      appLocalization.load();
+                      language="Arabic";
+                      print(language);
+
+                      application.onLocaleChanged(Locale(languagesMap[language]));
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -163,11 +164,8 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
 
   void onLocaleChange(Locale locale) async {
     setState(() {
-      _appLocalizationsDelegate = AppLocalizationsDelegate();
+  AppLocalizations.load(locale);
     });
   }
 }
 
-_getLanguageCode(BuildContext context) {
-  return Localizations.localeOf(context).languageCode;
-}

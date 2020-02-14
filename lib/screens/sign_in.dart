@@ -93,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             cursorColor: Color(0xFFC89C17),
                             decoration: InputDecoration(
                                 labelText: AppLocalizations.of(context)
-                                    .translateString('phone'),
+                                    .text('phone'),
                                 labelStyle: TextStyle(
                                   color: Color(0xFFC89C17),
                                 ),
@@ -122,7 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: AppLocalizations.of(context)
-                                  .translateString('password_txt'),
+                                  .text('password_txt'),
                               hasFloatingPlaceholder: true,
                               prefixIcon: Icon(
                                 Icons.lock,
@@ -139,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     backgroundColor: Colors.yellow)
                                 : FlatButton(
                                     child: Text(AppLocalizations.of(context)
-                                        .translateString('btn_login')),
+                                        .text('btn_login')),
                                     color: Color(0xFFC89C17),
                                     textColor: Colors.white,
                                     padding: EdgeInsets.only(
@@ -165,7 +165,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               //         builder: (context) => sign()));
                             },
                             child: Text(AppLocalizations.of(context)
-                                .translateString('forget_password')),
+                                .text('forget_password')),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +179,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                               Text(
                                 AppLocalizations.of(context)
-                                    .translateString("don't_have_account"),
+                                    .text("don't_have_account"),
                                 style: TextStyle(color: Colors.black),
                               ),
                               FlatButton(
@@ -192,7 +192,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 },
                                 textColor: Color(0xFFC89C17),
                                 child: Text(AppLocalizations.of(context)
-                                    .translateString('btn_register')),
+                                    .text('btn_register')),
                               )
                             ],
                           )

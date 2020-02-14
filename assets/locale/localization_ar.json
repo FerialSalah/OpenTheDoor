@@ -40,6 +40,7 @@
   "website":"الموقع",
   "about_company":"عن الشركة",
   "invite_friend":"دعوة صديق",
+  "logout":"تسجيل خروج",
   "invite_friend_text":"ادعو صديقك واحصل علي هدية ",
   "your_promocode":"رمزك الترويجي",
   "promo_code_txt":"اسم الرمز",
@@ -47,8 +48,9 @@
   "enter_your_promo_code":"ادخل الرمز الترويجي الخاص بك",
   "get_your_gift":"أحصل علي هديتك",
   "provider_name":"اسم المساعد",
-  "end_service":"انهاء الخدمة"
-
-
-
+  "end_service":"انهاء الخدمة",
+  "english":"English",
+  "english":"عربي",
+  "choose_service":"اختار خدمة",
+  "select_provider":"اختار المساعد"
 }

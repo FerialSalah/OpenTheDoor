@@ -33,7 +33,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title:
-            Text(AppLocalizations.of(context).translateString('about_company')),
+            Text(AppLocalizations.of(context).text('about_company')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),

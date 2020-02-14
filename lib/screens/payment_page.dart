@@ -29,7 +29,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translateString('payment')),
+          title: Text(AppLocalizations.of(context).text('payment')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
         ),
@@ -38,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "$balance ${AppLocalizations.of(context).translateString('payment_txt')}",
+                "$balance ${AppLocalizations.of(context).text('payment_txt')}",
                 style: TextStyle(
                   color: Color(0xFFC89C17),
                   fontSize: 25.0,
@@ -48,7 +48,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 height: 15,
               ),
               Text(
-                AppLocalizations.of(context).translateString('balance'),
+                AppLocalizations.of(context).text('balance'),
                 style: TextStyle(
                   fontSize: 25.0,
                 ),
@@ -60,7 +60,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 minWidth: 250.0,
                 height: 10.0,
                 child: Text(AppLocalizations.of(context)
-                    .translateString('request_money')),
+                    .text('request_money')),
                 color: Color(0xFFC89C17),
                 textColor: Colors.white,
                 padding:

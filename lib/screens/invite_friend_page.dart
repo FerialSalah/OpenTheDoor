@@ -22,7 +22,7 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title:
-        Text(AppLocalizations.of(context).translateString('invite_friend')),
+        Text(AppLocalizations.of(context).text('invite_friend')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
@@ -36,7 +36,7 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
               height: 15,
             ),
             Text(
-              AppLocalizations.of(context).translateString('invite_friend_text'),
+              AppLocalizations.of(context).text('invite_friend_text'),
               style: TextStyle(
                 color: Colors.black45,
                 fontSize: 16.0,
@@ -46,7 +46,7 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
               height: 15,
             ),
             Text(
-              AppLocalizations.of(context).translateString('your_promocode'),
+              AppLocalizations.of(context).text('your_promocode'),
               style: TextStyle(
                 fontSize: 25.0,
               ),
@@ -55,7 +55,7 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
               height: 15,
             ),
           Text(
-            AppLocalizations.of(context).translateString('promo_code_txt'),
+            AppLocalizations.of(context).text('promo_code_txt'),
             style: TextStyle(
               color: Color(0xFFC89C17),
               fontSize: 20.0,
@@ -68,7 +68,7 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
               minWidth: 250.0,
               height: 10.0,
               child: Text(AppLocalizations.of(context)
-                  .translateString('invite_friend')),
+                  .text('invite_friend')),
               color: Color(0xFFC89C17),
               textColor: Colors.white,
               padding:

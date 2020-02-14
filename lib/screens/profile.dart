@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translateString('profile')),
+        title: Text(AppLocalizations.of(context).text('profile')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 minWidth: 250.0,
                                 height: 20.0,
                                 child: Text(AppLocalizations.of(context)
-                                    .translateString('edit_profile')),
+                                    .text('edit_profile')),
                                 color: Color(0xFFC89C17),
                                 textColor: Colors.white,
                                 padding: EdgeInsets.only(
@@ -110,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 minWidth: 250.0,
                                 height: 20.0,
                                 child: Text(AppLocalizations.of(context)
-                                    .translateString('change_password')),
+                                    .text('change_password')),
                                 color: Color(0xFFC89C17),
                                 textColor: Colors.white,
                                 padding: EdgeInsets.only(

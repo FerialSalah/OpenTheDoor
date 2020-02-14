@@ -13,7 +13,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title:
-        Text(AppLocalizations.of(context).translateString('promo_code')),
+        Text(AppLocalizations.of(context).text('promo_code')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
@@ -24,7 +24,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
           child: Column(
             children: <Widget>[
               Text(
-                AppLocalizations.of(context).translateString('enter_your_promo_code'),
+                AppLocalizations.of(context).text('enter_your_promo_code'),
                 style: TextStyle(
                   fontSize: 25.0,
                 ),
@@ -36,7 +36,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                 keyboardType: TextInputType. text,
                 cursorColor: Color(0xFFC89C17),
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context).translateString("promo_code"),
+                    labelText: AppLocalizations.of(context).text("promo_code"),
                     labelStyle: TextStyle(
                       color: Color(0xFFC89C17),
 
@@ -52,7 +52,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                 minWidth: 300.0,
                 height: 20.0,
                 child: Text(AppLocalizations.of(context)
-                    .translateString('get_your_gift')),
+                    .text('get_your_gift')),
                 color: Color(0xFFC89C17),
                 textColor: Colors.white,
                 padding:

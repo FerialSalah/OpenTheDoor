@@ -5,54 +5,55 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'application.dart';
+
 
 class AppLocalizations{
-  final Locale locale;
-  static Map<String, String> _localizedStrings;
+  Locale locale;
+  static Map<dynamic, dynamic> _localisedValues;
 
-  AppLocalizations(this.locale);
+ AppLocalizations(Locale locale) {
+    this.locale = locale;
+  }
 
   static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+    return Localizations.of<AppLocalizations>(context,AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = AppLocalizationsDelegate();
+  static Future<AppLocalizations> load(Locale locale) async {
+    AppLocalizations appLocalizations = AppLocalizations(locale);
+    String jsonContent =
+    await rootBundle.loadString("assets/locale/localization_${locale.languageCode}.json");
+    _localisedValues = json.decode(jsonContent);
+    return appLocalizations;
+  }
 
-  Future<bool> load() async {
-    String jsonString =
-    await rootBundle.loadString('assets/locale/localization_${locale.languageCode}.json');
-    Map<String,dynamic> jsonMap=json.decode(jsonString);
-    _localizedStrings=jsonMap.map((key ,value){
+  get currentLanguage => locale.languageCode;
 
-      return MapEntry(key,value.toString());
-    });
-    return true;
+  String text(String key) {
+    return _localisedValues[key] ?? "$key not found";
+  }
   }
 
 
-  String translateString(String key) {
-    return _localizedStrings[key];
-  }
-}
+
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
-  // This delegate instance will never change (it doesn't even have fields!)
-  // It can provide a constant constructor.
-  const AppLocalizationsDelegate();
+  final Locale newLocale;
+
+  const AppLocalizationsDelegate({this.newLocale});
 
   @override
   bool isSupported(Locale locale) {
-    // Include all of your supported language codes here
-    return ['en', 'ar'].contains(locale.languageCode);
+    return application.supportedLanguagesCodes.contains(locale.languageCode);
   }
 
   @override
-  Future<AppLocalizations> load(Locale locale) async {
-    // AppLocalizations class is where the JSON loading actually runs
-    AppLocalizations localizations = new AppLocalizations(locale);
-    await localizations.load();
-    return localizations;
+  Future<AppLocalizations> load(Locale locale) {
+    return AppLocalizations.load(newLocale ?? locale);
   }
 
   @override
-  bool shouldReload(AppLocalizationsDelegate old) => false;
+  bool shouldReload(LocalizationsDelegate<AppLocalizations> old) {
+    return true;
+  }
 }

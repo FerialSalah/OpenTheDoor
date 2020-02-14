@@ -94,7 +94,7 @@ onChanged: (String arg){},
                       cursorColor: Color(0xFFC89C17),
                       decoration: InputDecoration(
                           labelText: AppLocalizations.of(context)
-                              .translateString('phone'),
+                              .text('phone'),
                           labelStyle: TextStyle(
                             color: Color(0xFFC89C17),
                           ),

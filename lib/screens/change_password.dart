@@ -17,7 +17,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       backgroundColor: Color(0xFFC89C17),
       appBar: AppBar(
         title: Text(
-            AppLocalizations.of(context).translateString('change_password')),
+            AppLocalizations.of(context).text('change_password')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
         leading: IconButton(
@@ -79,7 +79,7 @@ Widget changePasswordCard(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("old_password"),
+                labelText: AppLocalizations.of(context).text("old_password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -96,7 +96,7 @@ Widget changePasswordCard(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("new _password"),
+                labelText: AppLocalizations.of(context).text("new _password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -113,7 +113,7 @@ Widget changePasswordCard(BuildContext context){
             keyboardType: TextInputType. text,
             cursorColor: Color(0xFFC89C17),
             decoration: InputDecoration(
-                labelText: AppLocalizations.of(context).translateString("confirm _password"),
+                labelText: AppLocalizations.of(context).text("confirm _password"),
                 labelStyle: TextStyle(
                   color: Color(0xFFC89C17),
                 ),
@@ -129,7 +129,7 @@ Widget changePasswordCard(BuildContext context){
           MaterialButton(
             minWidth: 250.0,
             height: 20.0,
-            child: Text(AppLocalizations.of(context).translateString("save")),
+            child: Text(AppLocalizations.of(context).text("save")),
             color: Color(0xFFC89C17),
             textColor: Colors.white,
             padding: EdgeInsets.only(left: 38, right: 38, top: 15, bottom: 15),
