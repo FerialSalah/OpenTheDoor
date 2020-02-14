@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/screens/payment_page.dart';
 import 'package:flutter_openthedoor/screens/profile.dart';
 import 'package:flutter_openthedoor/screens/promo_code_page.dart';
+import 'package:flutter_openthedoor/screens/splah.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../localization.dart';
 import 'about_us_page.dart';
 import '../map.dart';
 import 'contact_us_page.dart';
 import 'history_page.dart';
-
 import 'invite_friend_page.dart';
 import 'language_page.dart';
 import 'notification_page.dart';
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      name == null || name =="" ?'user':name,
+                      name == null || name == "" ? 'user' : name,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
@@ -64,11 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 50.0,
-                      child: linkImg == null || linkImg == "" ? Icon(
-                        Icons.account_circle,
-                        size: 80.0,
-                        color: Color(0xFFC89C17),
-                      ): NetworkImage(linkImg) ,
+                      child: linkImg == null || linkImg == ""
+                          ? Icon(
+                              Icons.account_circle,
+                              size: 80.0,
+                              color: Color(0xFFC89C17),
+                            )
+                          : NetworkImage(linkImg),
                     )
                   ],
                 ),
@@ -156,9 +158,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
               onTap: () {
-                 Navigator.pop(context);
-                 Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => LanguageScreen()));
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LanguageScreen()));
               },
             ),
             ListTile(
@@ -213,8 +215,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 30.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               ),
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.clear();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SplashPage()));
               },
             ),
             SizedBox(

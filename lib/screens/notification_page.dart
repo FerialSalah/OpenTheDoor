@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openthedoor/models/notifications.dart';
+import 'package:flutter_openthedoor/utili/apiProvider.dart';
+import 'package:flutter_openthedoor/widgets/notificationsCard.dart';
 
 import '../localization.dart';
 
-class NotificationScreen extends StatelessWidget {
+class NotificationScreen extends StatefulWidget {
+  @override
+  _NotificationScreenState createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
+  List<Generalnotfication> notifications = new List();
+  getNotificatiions() async {
+    ApiProvider apiProvider = new ApiProvider();
+    notifications = await apiProvider.getNotification();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getNotificatiions();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,16 +33,17 @@ class NotificationScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                AppLocalizations.of(context).text('notification_data'),
-                style: TextStyle(
-                  fontSize: 25.0,
+          child: ListView.builder(
+            itemCount: notifications == null ? 0 : notifications.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: NotificationsCard(
+                  title: notifications[index].notTitleAr,
+                  createdAt:(notifications[index].createdAt).toString() ,
                 ),
-
-              )],
+              );
+            },
           ),
         ));
   }

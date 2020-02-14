@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_openthedoor/models/aboutApp.dart';
 import 'package:flutter_openthedoor/models/appContact.dart';
+import 'package:flutter_openthedoor/models/notifications.dart';
 import 'package:flutter_openthedoor/models/provider.dart';
 import 'package:flutter_openthedoor/models/providerCardModel.dart';
 import 'package:flutter_openthedoor/models/serviceDetails.dart';
@@ -25,10 +25,12 @@ class ApiProvider {
   static String providerDetails = "getProvider";
   static String makeOrderLink = "adduserservice";
   static String historyLink = "getuserservicehistory";
+  static String notficationsLink = "getgeneralnotfication";
 
   //////////////////////////////
   //   User related requests  //
   //////////////////////////////
+
   Future<int> registration(
       {String userName,
       String email,
@@ -81,6 +83,7 @@ class ApiProvider {
     print("======> $response2");
     return 200;
   }
+
   ////////////////////////////
 
   Future<int> userLogin({String phone, String password}) async {
@@ -90,11 +93,14 @@ class ApiProvider {
     var data = {'phone': phone, 'password': password};
     Response response = await Dio().post("$baseUrl$login", data: data);
     print("======> $response");
+
     prefs.setInt('id', response.data['user']['id']);
     prefs.setString('token', response.data['user']['api_token']);
     prefs.setString('email', response.data['user']['email']);
     prefs.setString('name', response.data['user']['name']);
     prefs.setString('userAvatar', response.data['user']['user_image']);
+    prefs.setString('invitation_code', response.data['user']['invitation_code']);
+
     print("========");
     print("======> $response");
     return 200;
@@ -127,6 +133,7 @@ class ApiProvider {
     print("======> $response");
     return 200;
   }
+
   ////////////////////////////
 
   Future<int> editPassword(
@@ -170,6 +177,7 @@ class ApiProvider {
     Response response = await Dio().post("$baseUrl$checkcode", data: jsonData);
     prefs.setString("token", response.data['userinfo']['api_token']);
   }
+
   ////////////////////////////
 
   Future<AboutUsModel> getUserInfo() async {
@@ -199,18 +207,21 @@ class ApiProvider {
 
   ////////////////////////////
 
-  Future<String> getMyInviteCode() async {
+  Future<List<Generalnotfication>> getNotification() async {
+    List<Generalnotfication> notfications = new List();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String code = "";
     var headers = {
       "Authorization": "Bearer ${prefs.getString('token')}",
       "Content-Type": "application/json",
       "Accept": "application/json"
     };
     Response response = await Dio()
-        .get("$baseUrl$getBalance", options: Options(headers: headers));
-    code = response.data['userwallet']['user_balance'];
-    return code;
+        .get("$baseUrl$notficationsLink", options: Options(headers: headers));
+    var data = response.data['Generalnotfication'];
+    data.forEach((value) {
+      notfications.add(Generalnotfication.fromApi(value));
+    });
+    return notfications;
   }
 
   //////////////////////////////
@@ -239,6 +250,8 @@ class ApiProvider {
     Response response = await Dio()
         .post("$baseUrl$makeOrderLink", options: Options(headers: headers));
   }
+
+  //////////////////////////////
 
   Future<List<List<ServiceDetailsModel>>> getHistory() async {
     List<List<ServiceDetailsModel>> history = new List();
@@ -300,6 +313,8 @@ class ApiProvider {
     return provider;
   }
 
+  /////////////////////////////
+
   Future<List<ProviderCardModel>> getProviders() async {
     List<ProviderCardModel> providers = new List();
     var data;
@@ -312,11 +327,14 @@ class ApiProvider {
     Response response = await Dio()
         .get("$baseUrl$getProvider", options: Options(headers: headers));
     data = response.data['providerservice'];
+    print(data);
     data.forEach((value) {
       providers.add(ProviderCardModel.fromApi(value));
     });
     return providers;
   }
+
+  /////////////////////////////
 
   Future<AppContactModel> getAppContact() async {
     AppContactModel contact;

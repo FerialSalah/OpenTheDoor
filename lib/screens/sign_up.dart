@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       child: TextFormField(
                                         autovalidate: autovalidate,
                                         validator: (String arg) {
-                                          if (arg.length < 9)
+                                          if (arg.length < 11)
                                             return 'enter vaild mobile number';
                                           else
                                             return null;
@@ -102,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         onSaved: (String arg) {
                                           _phoneController.text = arg;
                                         },
-                                        maxLength: 10,
+                                        maxLength: 11,
                                         keyboardType: TextInputType.phone,
                                         cursorColor: Color(0xFFC89C17),
                                         decoration: InputDecoration(

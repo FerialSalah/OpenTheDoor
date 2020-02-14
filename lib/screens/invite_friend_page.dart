@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../localization.dart';
+
 class InviteFriendScreen extends StatefulWidget {
   @override
   _InviteFriendScreenState createState() => _InviteFriendScreenState();
 }
 
 class _InviteFriendScreenState extends State<InviteFriendScreen> {
+  String myCode="";
   @override
   void initState() {
     super.initState();
+    getMyCode();
   }
 
-  getMyCode() async{
-    
-
+  getMyCode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    myCode = "${prefs.getString("invitation_code")}";
+    print(myCode);
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:
-        Text(AppLocalizations.of(context).text('invite_friend')),
+        title: Text(AppLocalizations.of(context).text('invite_friend')),
         backgroundColor: Color(0xFFC89C17),
         centerTitle: true,
       ),
@@ -30,8 +36,11 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.card_giftcard,size: 200.0,color: Color(0xFFC89C17),)
-            ,
+            Icon(
+              Icons.card_giftcard,
+              size: 200.0,
+              color: Color(0xFFC89C17),
+            ),
             SizedBox(
               height: 15,
             ),
@@ -54,25 +63,24 @@ class _InviteFriendScreenState extends State<InviteFriendScreen> {
             SizedBox(
               height: 15,
             ),
-          Text(
-            AppLocalizations.of(context).text('promo_code_txt'),
-            style: TextStyle(
-              color: Color(0xFFC89C17),
-              fontSize: 20.0,
+            Text(
+              myCode==null ? "":myCode,
+              style: TextStyle(
+                color: Color(0xFFC89C17),
+                fontSize: 20.0,
+              ),
             ),
-          ),
             SizedBox(
               height: 15,
             ),
             MaterialButton(
               minWidth: 250.0,
               height: 10.0,
-              child: Text(AppLocalizations.of(context)
-                  .text('invite_friend')),
+              child: Text(AppLocalizations.of(context).text('invite_friend')),
               color: Color(0xFFC89C17),
               textColor: Colors.white,
               padding:
-              EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
+                  EdgeInsets.only(left: 38, right: 38, top: 10, bottom: 10),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               onPressed: () {},

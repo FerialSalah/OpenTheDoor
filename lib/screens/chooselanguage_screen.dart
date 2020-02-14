@@ -9,22 +9,20 @@ import '../application.dart';
 import '../localization.dart';
 import 'edit_profile.dart';
 import 'sign_in.dart';
+
 class ChooseLanguage extends StatefulWidget {
   @override
   _ChooseLanguageState createState() => _ChooseLanguageState();
 }
 
 class _ChooseLanguageState extends State<ChooseLanguage> {
-
   AppLocalizationsDelegate _appLocalizationsDelegate;
-
 
   @override
   void initState() {
-
     super.initState();
-    _appLocalizationsDelegate=new AppLocalizationsDelegate(newLocale: null);
-    application.onLocaleChanged=onLocaleChange;
+    _appLocalizationsDelegate = new AppLocalizationsDelegate(newLocale: null);
+    application.onLocaleChanged = onLocaleChange;
   }
 
   void onLocaleChange(Locale locale) {
@@ -36,23 +34,18 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: ChooseLanguagePage(),
-    localizationsDelegates: [
-    _appLocalizationsDelegate,
-    const AppLocalizationsDelegate(),
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    ],
-    supportedLocales: application.supportedLocales(),
+      debugShowCheckedModeBanner: false,
+      home: ChooseLanguagePage(),
+      localizationsDelegates: [
+        _appLocalizationsDelegate,
+        const AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: application.supportedLocales(),
     );
   }
-
-
 }
-
-
-
 
 class ChooseLanguagePage extends StatefulWidget {
   @override
@@ -75,14 +68,17 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
 
   String language;
 
+  get prefs => null;
+
+  set token(token) {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFC89C17),
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)
-              .text('title_select_language')),
+          title:
+              Text(AppLocalizations.of(context).text('title_select_language')),
           backgroundColor: Color(0xFFC89C17),
           centerTitle: true,
         ),
@@ -99,19 +95,22 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: MaterialButton(
-                  onPressed: () async => {
+                  onPressed: () async {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                        
                     setState(() {
-                       language="English";
+                      language = "English";
+                      pref.setString('lang', language);
                       print(language);
-                      application.onLocaleChanged(Locale(languagesMap[language]));
+                      application
+                          .onLocaleChanged(Locale(languagesMap[language]));
 
                       Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>SignInScreen()));
-
-
-                    })
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInScreen()));
+                    });
                   },
                   textColor: Color(0xFFC89C17),
                   color: Colors.white,
@@ -130,18 +129,21 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MaterialButton(
-                  onPressed: () => {
+                  onPressed: () async {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
                     setState(() {
-                      language="Arabic";
+                      language = "Arabic";
                       print(language);
-
-                      application.onLocaleChanged(Locale(languagesMap[language]));
+                      pref.setString('lang', language);
+                      application
+                          .onLocaleChanged(Locale(languagesMap[language]));
 
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => SignInScreen()));
-                    })
+                    });
                   },
                   color: Colors.white,
                   textColor: Color(0xFFC89C17),
@@ -164,8 +166,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
 
   void onLocaleChange(Locale locale) async {
     setState(() {
-  AppLocalizations.load(locale);
+      AppLocalizations.load(locale);
     });
   }
 }
-

@@ -69,7 +69,7 @@ class _HistoryScreenState extends State<HistoryScreen>
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context, false)),
+            onPressed: () => {Navigator.pop(context, false)}),
       ),
       body: DefaultTabController(
           length: 4,
