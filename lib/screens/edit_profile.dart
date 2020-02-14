@@ -25,7 +25,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         setState(() {
           isLoading = true;
         });
-        SharedPreferences prefs = await SharedPreferences.getInstance();
         ApiProvider api = new ApiProvider();
         await api.registration(
             img: _image,

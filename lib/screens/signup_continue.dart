@@ -16,7 +16,6 @@ class SignUpFinalPage extends StatefulWidget {
 class _SignUpFinalPageState extends State<SignUpFinalPage> {
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
- 
   TextEditingController _passwordController = new TextEditingController();
 
   bool isLoading = false;

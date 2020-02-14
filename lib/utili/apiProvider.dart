@@ -63,6 +63,9 @@ class ApiProvider {
     prefs.setString('email', response.data['user']['email']);
     prefs.setString('name', response.data['user']['name']);
     prefs.setString('userAvatar', response.data['user']['user_image']);
+    prefs.setString(
+        'invitation_code', response.data['user']['invitation_code']);
+
     print("========");
     print("======> $response");
 
@@ -86,6 +89,34 @@ class ApiProvider {
 
   ////////////////////////////
 
+  Future<int> changePassword(
+      {String currentPassword,
+      String newPassword,
+      String confirmPassword}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = {
+      "user_id": prefs.getInt('id'),
+      "current_password": "$currentPassword",
+      "password": "$newPassword",
+      "password_confirmation": "$confirmPassword"
+    };
+
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+
+    Response response = await Dio().post("${baseUrl}setpassword",
+        data: data, options: Options(headers: headers));
+    print("========");
+    print("======> $response");
+
+    return 200;
+  }
+
+  ////////////////////////////
+
   Future<int> userLogin({String phone, String password}) async {
     print("======= $phone   $password");
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -99,7 +130,8 @@ class ApiProvider {
     prefs.setString('email', response.data['user']['email']);
     prefs.setString('name', response.data['user']['name']);
     prefs.setString('userAvatar', response.data['user']['user_image']);
-    prefs.setString('invitation_code', response.data['user']['invitation_code']);
+    prefs.setString(
+        'invitation_code', response.data['user']['invitation_code']);
 
     print("========");
     print("======> $response");
@@ -287,6 +319,7 @@ class ApiProvider {
     history.add(inProccing);
     history.add(current);
     history.add(canceled);
+    print(history.length);
     return history;
   }
 
