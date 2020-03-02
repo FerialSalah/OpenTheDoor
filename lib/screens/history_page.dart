@@ -40,6 +40,7 @@ class _HistoryScreenState extends State<HistoryScreen>
   getHistory() async {
     ApiProvider api = new ApiProvider();
     var lists = await api.getHistory();
+    print(lists);
     cancelOrders = lists[3];
     currentOrders = lists[2];
     inProcessOrders = lists[1];

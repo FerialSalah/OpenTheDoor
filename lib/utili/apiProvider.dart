@@ -280,7 +280,9 @@ class ApiProvider {
       "Accept": "application/json"
     };
     Response response = await Dio()
-        .post("$baseUrl$makeOrderLink", options: Options(headers: headers));
+        .post("$baseUrl$makeOrderLink", data: data, options: Options(headers: headers));
+    print(response.data);
+
   }
 
   //////////////////////////////
@@ -299,9 +301,10 @@ class ApiProvider {
     };
     Response response = await Dio()
         .get("$baseUrl$historyLink", options: Options(headers: headers));
-
+    
+  
     var data = response.data['userserviceinfo'];
-
+  print(data);
     data['current'].forEach((value) {
       current.add(ServiceDetailsModel.fromApi(value));
     });

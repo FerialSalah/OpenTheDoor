@@ -152,6 +152,7 @@ class _SignUpFinalPageState extends State<SignUpFinalPage> {
                             TextFormField(
                               controller: _emailController,
                               validator: (String arg) {
+                                print(Helpers.emailvalidator(arg));
                                 if (Helpers.emailvalidator(arg) == false)
                                   return 'enter vaild email';
                                 else

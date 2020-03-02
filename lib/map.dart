@@ -49,13 +49,13 @@ class MapViewScreenState extends State<MapViewScreen> {
   }
 
   Future search(double longitude, double latitude) async {
-   var first;
-  //  final coordinates = new Coordinates(longitude, latitude);
-  //  addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first;
+    //  final coordinates = new Coordinates(longitude, latitude);
+    //  addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
     //first = addresses.first;
     final coordinates = new Coordinates(longitude, latitude);
     addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  //  var first = addresses.first;
+    first = addresses.first;
     address = "${first.featureName} : ${first.addressLine}";
     print(address);
   }
@@ -72,7 +72,6 @@ class MapViewScreenState extends State<MapViewScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           getCurrentLocation();
-          
         },
         child: Icon(Icons.location_searching),
         backgroundColor: Colors.yellow,
@@ -104,7 +103,11 @@ class MapViewScreenState extends State<MapViewScreen> {
                       ListTile(
                         title: Text(
                           '${addresses == null ? "" : addresses.first.addressLine}',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -114,7 +117,8 @@ class MapViewScreenState extends State<MapViewScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: FlatButton(
-                  child: Text(AppLocalizations.of(context).text("choose_service")),
+                  child:
+                      Text(AppLocalizations.of(context).text("choose_service")),
                   color: Color(0xFFC89C17),
                   textColor: Colors.white,
                   padding:

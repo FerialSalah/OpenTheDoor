@@ -38,7 +38,7 @@ class _ProviderDeatilsState extends State<ProviderDeatils> {
     ApiProvider api = new ApiProvider();
     provider = await api.getProviderDetails(widget.id);
     isLoading = false;
-    print("${ApiProvider.baseUrl}${provider.image}");
+    print("${ApiProvider.baseUrl}${provider.image} ${provider.id}"); 
     setState(() {});
   }
 
@@ -172,7 +172,7 @@ class _ProviderDeatilsState extends State<ProviderDeatils> {
                               isLoading = true;
                               setState(() {});
                               ApiProvider api = new ApiProvider();
-                              await api.makeOrder(provider.id);
+                              await api.makeOrder(widget.id);
                             } catch (e) {
                               print(e);
                             } finally {
