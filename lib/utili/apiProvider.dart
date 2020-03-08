@@ -26,6 +26,7 @@ class ApiProvider {
   static String makeOrderLink = "adduserservice";
   static String historyLink = "getuserservicehistory";
   static String notficationsLink = "getgeneralnotfication";
+  static String serviceHandling = "aedituserservice";
 
   //////////////////////////////
   //   User related requests  //
@@ -279,10 +280,9 @@ class ApiProvider {
       "Content-Type": "application/json",
       "Accept": "application/json"
     };
-    Response response = await Dio()
-        .post("$baseUrl$makeOrderLink", data: data, options: Options(headers: headers));
+    Response response = await Dio().post("$baseUrl$makeOrderLink",
+        data: data, options: Options(headers: headers));
     print(response.data);
-
   }
 
   //////////////////////////////
@@ -301,10 +301,9 @@ class ApiProvider {
     };
     Response response = await Dio()
         .get("$baseUrl$historyLink", options: Options(headers: headers));
-    
-  
+
     var data = response.data['userserviceinfo'];
-  print(data);
+    print(data);
     data['current'].forEach((value) {
       current.add(ServiceDetailsModel.fromApi(value));
     });
@@ -393,4 +392,33 @@ class ApiProvider {
 
   ////////////////////////////
 
+  Future<int> editorder(
+      {int providerId,
+      int userId,
+      String status,
+      String note,
+      int bonus}) async {
+    var data = {
+      "provider_id": providerId,
+      "user_service_id": userId,
+      "status": status,
+      "provider_start":1,
+      "note": "${note == null ? "test" : note}",
+      "service_id": "5",
+      "bounce": bonus == null ? 0 : bonus
+    };
+   
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+
+    var headers = {
+      "Authorization": "Bearer ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+
+    Response response = await Dio().post("$baseUrl$serviceHandling",
+        data: data, options: Options(headers: headers));
+    print(response.data);
+  }
 }

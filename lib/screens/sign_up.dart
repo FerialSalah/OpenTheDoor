@@ -22,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   _validateInputs() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      try {
+     // try {
         setState(() {
           isLoading = true;
         });
@@ -30,13 +30,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await api.getCode(phone:_phoneController.text);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ActivationCodePage()));
-      } catch (e) {
-        print(e);
-        setState(() {
-          isLoading = false;
-        });
+      // } catch (e) {
+      //   print(e);
+      //   setState(() {
+      //     isLoading = false;
+      //   });
         Helpers.showTheDialog(context, "error", "error");
-      }
+     // }
     } else {
       setState(() {
         autovalidate = true;
@@ -59,7 +59,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: Form(
         child: SingleChildScrollView(
-          // Optional
           child: Stack(
             children: <Widget>[
               Column(

@@ -88,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onSaved: (String arg) {
                               _phoneController.text = arg;
                             },
-                            maxLength: 9,
+                            maxLength: 11,
                             keyboardType: TextInputType.phone,
                             cursorColor: Color(0xFFC89C17),
                             decoration: InputDecoration(

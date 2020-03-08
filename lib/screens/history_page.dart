@@ -105,9 +105,9 @@ class _HistoryScreenState extends State<HistoryScreen>
                   current.HistoryCard(
                     list: currentOrders,
                   ),
-                  inprocess.InProcessScreen(),
-                  canceled.CanceledPage(),
-                  completed.CompletedPage(),
+                  inprocess.InProcessScreen(list: inProcessOrders),
+                  canceled.CanceledPage( list: cancelOrders,),
+                  completed.CompletedPage(list:completedOrders),
                 ]),
               ))
             ],

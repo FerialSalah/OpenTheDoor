@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openthedoor/models/serviceDetails.dart';
 import 'package:flutter_openthedoor/utili/apiProvider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryCard extends StatefulWidget {
   List<ServiceDetailsModel> list = new List();
@@ -17,7 +18,7 @@ class _HistoryCardState extends State<HistoryCard> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.list == null ? 0 :widget.list.length ,
+      itemCount: widget.list == null ? 0 : widget.list.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
@@ -39,9 +40,9 @@ class _HistoryCardState extends State<HistoryCard> {
                           size: 50.0,
                         ),
                       ),
-                      Text('provider 1 '),
+                      Text('${widget.list[index].providerName}'),
                       RatingBar(
-                        //  initialRating: 3,
+                        initialRating: (widget.list[index].ratCount).toDouble(),
                         //  minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -75,7 +76,7 @@ class _HistoryCardState extends State<HistoryCard> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0))),
                         child: Text(
-                          'accepted from provider',
+                          '${widget.list[index].status}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15.0, fontWeight: FontWeight.bold),
@@ -94,21 +95,10 @@ class _HistoryCardState extends State<HistoryCard> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text('Information About Provider:'),
-                      ]),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '10 SAR/Hour',
+                        '${widget.list[index].providerPricePerHour} SAR/Hour',
                         style: TextStyle(fontSize: 15.0),
                       ),
                       SizedBox(
@@ -124,7 +114,8 @@ class _HistoryCardState extends State<HistoryCard> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: <Widget>[
-                      Text('The arrival distance is 1 meter'),
+                      Text(
+                          'The arrival in ${widget.list[index].providerMinutesToArrive} Minutes. '),
                     ],
                   ),
                 ),
@@ -145,7 +136,19 @@ class _HistoryCardState extends State<HistoryCard> {
                         color: Color(0xFFC89C17),
                         textColor: Colors.white,
                         child: const Text('Start Service'),
-                        onPressed: () {},
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          ApiProvider api = new ApiProvider();
+                          try {
+                            api.editorder(
+                                userId: prefs.getInt("id"),
+                                providerId: widget.list[index].providerId,
+                                status: "inprocess");
+                          } catch (e) {
+                            print(e.response);
+                          }
+                        },
                       ),
                       MaterialButton(
                         minWidth: 100,
@@ -153,7 +156,15 @@ class _HistoryCardState extends State<HistoryCard> {
                         color: Color(0xFFC89C17),
                         textColor: Colors.white,
                         child: const Text('Cancel Service'),
-                        onPressed: () {},
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          ApiProvider api = new ApiProvider();
+                          api.editorder(
+                              userId: prefs.getInt("id"),
+                              providerId: widget.list[index].providerId,
+                              status: "canceled");
+                        },
                       ),
                     ],
                   ),
