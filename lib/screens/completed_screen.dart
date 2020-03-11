@@ -122,53 +122,6 @@ class _CompletedPageState extends State<CompletedPage> {
                 SizedBox(
                   height: 15,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      MaterialButton(
-                        minWidth: 150,
-                        height: 40,
-                        color: Color(0xFFC89C17),
-                        textColor: Colors.white,
-                        child: const Text('Start Service'),
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          ApiProvider api = new ApiProvider();
-                          try {
-                            api.editorder(
-                                userId: prefs.getInt("id"),
-                                providerId: widget.list[index].providerId,
-                                status: "inprocess");
-                          } catch (e) {
-                            print(e.response);
-                          }
-                        },
-                      ),
-                      MaterialButton(
-                        minWidth: 100,
-                        height: 40,
-                        color: Color(0xFFC89C17),
-                        textColor: Colors.white,
-                        child: const Text('Cancel Service'),
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          ApiProvider api = new ApiProvider();
-                          api.editorder(
-                              userId: prefs.getInt("id"),
-                              providerId: widget.list[index].providerId,
-                              status: "canceled");
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
               ],
             ),
           ),

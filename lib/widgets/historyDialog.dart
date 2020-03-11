@@ -19,16 +19,15 @@ class _DialogCardState extends State<DialogCard> {
     super.initState();
   }
 
-  Stopwatch watch = new Stopwatch();
-  Timer timer;
+  Stopwatch watch = new Stopwatch( );
 
   String elapsedTime = '';
   bool startStop = true;
 
-  updateTime(Timer timer) {
+  updateTime(Timer timer) { 
     if (watch.isRunning) {
       setState(() {
-        elapsedTime = transformMilliSeconds(watch.elapsedMilliseconds);
+        elapsedTime = transformMilliSeconds(watch.elapsedMilliseconds+widget.data.createdAt.millisecond);
       });
     }
   }
@@ -45,7 +44,7 @@ class _DialogCardState extends State<DialogCard> {
     setState(() {
       startStop = false;
       watch.start();
-      timer = Timer.periodic(Duration(milliseconds: 100), updateTime);
+      //timer = Timer.periodic(Duration(milliseconds: DateTime.now().millisecond - widget.data.createdAt.millisecond), updateTime);
     });
   }
 
@@ -58,7 +57,7 @@ class _DialogCardState extends State<DialogCard> {
   }
 
   setTime() {
-    var timeSoFar = watch.elapsedMilliseconds;
+    var timeSoFar =DateTime.now().millisecond - widget.data.createdAt.millisecond;
     setState(() {
       elapsedTime = transformMilliSeconds(timeSoFar);
     });
